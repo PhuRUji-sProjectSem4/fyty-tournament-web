@@ -1,0 +1,13 @@
+:root{
+    --fyty-color: #07b5b5;
+    --component-bg-color: #181A27;
+    --componet-color: #242633;
+    --input-color: #404251;
+    --noti-color: #e14040;
+}
+
+body{
+    background: #181A27;
+    color: #ffffff;
+    font-family: 'Kanit', sans-serif;
+}
