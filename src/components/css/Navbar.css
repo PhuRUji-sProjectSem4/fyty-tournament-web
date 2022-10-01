@@ -1,0 +1,92 @@
+.navbarBox{
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    padding: 10px;
+    background: var(--componet-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.appName{
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0 0.2em;
+}
+
+.navContent{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0;
+    justify-content: space-around;
+    column-gap: 2em;
+    padding: 0 2em;
+}
+
+.link a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.link a:hover{
+    color: #1ccece ;
+}
+
+.singUp a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.navSearch input{
+    /* width: 400px; */
+    width: 25vw;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    padding: 1em;
+    background: var(--fyty-color);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.navSearch ::-webkit-input-placeholder {
+    color: #ffffff;
+}
+
+.langBox{
+    display: flex;
+    column-gap: 0.25em;
+}
+
+.changeLang{
+    background: var(--fyty-color);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.reg{
+    background: var(--fyty-color);
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.reg:hover{
+    background: var(--fyty-color);
+}
+
