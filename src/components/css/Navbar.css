@@ -84,9 +84,19 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    font-size: 1.2em;
 }
 
 .reg:hover{
-    background: var(--fyty-color);
+    background: #1ccece;
+    cursor: pointer;
 }
 
+.login{
+    font-size: 1.2em;
+}
+
+.login:hover{
+    cursor: pointer;
+    color: #1ccece ;
+}

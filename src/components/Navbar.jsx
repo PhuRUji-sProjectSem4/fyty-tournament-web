@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from "react-router-dom";
+import { Login, Register } from ".";
 
 import "./css/Navbar.css"
 
 const Navbar = () => {
+
+  const [loginPopup, setLoginPopup] = useState(() => false)
+  const [regPopup, setRegPopup] = useState(() => false)
   return (
     <div className='navbarBox'>
       <div className="logo">
@@ -23,9 +27,12 @@ const Navbar = () => {
         <div className="langBox">
           <div className="changeLang"></div><span>TH</span>
         </div>
-        <div className="link"><NavLink to="/Login">ล็อกอิน</NavLink></div>
-        <div className="singUp"><NavLink to="/Register"><div className="reg">สมัคร</div></NavLink></div>
+        <div className="login" onClick={() => setLoginPopup(prevLoginState => prevLoginState = true)}>ล็อกอิน</div>
+        <Login loginTrigger={loginPopup} setLoginTrigger={setLoginPopup}/>
+        <div className="singUp"><div className="reg" onClick={() => setRegPopup(prevRegState => prevRegState = true)}>สมัคร</div></div>
+        <Register regTrigger={regPopup} setRegTrigger={setRegPopup}/>
       </div>
+      
     </div>
   )
 }
