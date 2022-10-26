@@ -14,8 +14,8 @@
 .regPop-inner{
     position: relative;
     background: var(--componet-color);
-    height: 600px;
-    width: 500px;
+    height: 590px;
+    width: 400px;
     border-radius: 8px;
 }
 
@@ -30,4 +30,33 @@
 .regPop-inner .close:hover{
     cursor: pointer;
     color: var(--noti-color);
+}
+
+.regForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.switchLogin{
+    cursor: pointer;
+    text-decoration: underline;
+    margin-right: 60%;
+    font-size: 0.8em;
+}
+
+.policyDetail{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+}
+
+.policyDetail span{
+    color: var(--fyty-color);
+    cursor: pointer;
+    text-decoration: underline;
 }

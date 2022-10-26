@@ -28,9 +28,9 @@ const Navbar = () => {
           <div className="changeLang"></div><span>TH</span>
         </div>
         <div className="login" onClick={() => setLoginPopup(prevLoginState => prevLoginState = true)}>ล็อกอิน</div>
-        <Login loginTrigger={loginPopup} setLoginTrigger={setLoginPopup}/>
+        <Login loginTrigger={loginPopup} setLoginTrigger={setLoginPopup} setRegTrigger={setRegPopup}/>
         <div className="singUp"><div className="reg" onClick={() => setRegPopup(prevRegState => prevRegState = true)}>สมัคร</div></div>
-        <Register regTrigger={regPopup} setRegTrigger={setRegPopup}/>
+        <Register regTrigger={regPopup} setRegTrigger={setRegPopup} setLoginTrigger={setLoginPopup}/>
       </div>
       
     </div>
