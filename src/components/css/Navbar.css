@@ -48,22 +48,6 @@
     font-size: 1.2em;
 }
 
-.navSearch input{
-    /* width: 400px; */
-    width: 25vw;
-    height: 40px;
-    border-radius: 8px;
-    border: none;
-    padding: 1em;
-    background: var(--fyty-color);
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.navSearch ::-webkit-input-placeholder {
-    color: #ffffff;
-}
-
 .langBox{
     display: flex;
     column-gap: 0.25em;
@@ -95,6 +79,7 @@
 
 .login{
     font-size: 1.2em;
+    text-decoration: underline;
 }
 
 .login:hover{

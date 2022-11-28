@@ -1,38 +1,58 @@
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 import './css/Login.css'
 
 const Login = (props) => {
-  const [passwordShow, setPasswordShow] = useState(false)
+  const [passwordShow, setPasswordShow] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm(
+    {
+      defaultValues:{
+        username: "",
+        password: ""
+      }
+    }
+  );
+
+  function onSubmit(data){
+    console.log(data);
+  };
 
   function togglePasswordShow (){
     return setPasswordShow(prev => !prev)
-  }
+  };
   
   function switchToReg(){
     props.setLoginTrigger(prev => prev=false)
     props.setRegTrigger(prev => prev=true) 
-  }
+  };
 
   return (props.loginTrigger)?(
     <div className="loginPop">
         <div className="loginPop-inner">
             <div className='close' onClick={() => props.setLoginTrigger(prev => prev=false)} >x</div>
             <div className="headbox">
-                <h1>ล็อกอิน Fy<span className='fytyColor'>Ty</span></h1>
+                <h1>Login Fy<span className='fytyColor'>Ty</span></h1>
             </div>
-            <form className="loginForm">
-              <input className='textInput' type="text" placeholder='ชื่อผู้ใช้ หรือ อีเมล'/>
-              <div className='pass'>
-                <input className='textInput' type={passwordShow ? "text" : "password"} placeholder='รหัสผ่าน'/>
+            <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+              <div className="usernameWrape">
+                <input className='textInput' type="text" placeholder='Username or Email'/>
+              </div>
+              <div className='passwordWrape'>
+                <input className='textInput' type={passwordShow ? "text" : "password"} placeholder='Password'/>
                 <span className='passwordToggle'><img src={passwordShow ? "/asset/hide.svg" : "/asset/show.svg"} alt="icon" height="23px" width="23Px" onClick={togglePasswordShow}/></span>
               </div>
-              <div className='forgetPassword'><div>ลืมรหัสผ่าน?</div><div onClick={switchToReg}>สมัครสมาชิก</div></div>
-              <input className='submit' type="submit" value="ล็อกอิน" />
+              <div className='forgetPassword'><div>forget password?</div><div onClick={switchToReg}>register</div></div>
+              <input className='submit' type="submit" value="Login" />
             </form>
             <div className="separate">
               <div className="line"></div>
-              <p>หรือ</p>
+              <p>Or</p>
               <div className="line"></div>
             </div>
             <div className="oauth">

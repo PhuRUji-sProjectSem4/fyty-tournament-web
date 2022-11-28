@@ -14,7 +14,7 @@
 .loginPop-inner{
     position: relative;
     background: var(--componet-color);
-    height: 460px;
+    min-height: 485px;
     width: 400px;
     border-radius: 8px
 }
@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
 }
 
 
@@ -65,7 +65,7 @@
     cursor: pointer;
 }
 
-.pass{
+.passwordWrape{
     position: relative;
 }
 

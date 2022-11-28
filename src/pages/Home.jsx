@@ -1,17 +1,10 @@
 import React from 'react'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import './css/Home.css'
 
 
 const Home = () => {
-
-  const slideImages = [
-    '/asset/slide1.svg',
-    '/asset/slide2.svg',
-    '/asset/slide3.svg',
-    'asset/slide4.svg'
-  ]
 
   return (
     <div>
@@ -20,7 +13,7 @@ const Home = () => {
       </div>
       <div className="vdoWrapper">
         <div className="vdo">
-          <iframe width="500" height="350"
+          <iframe width="500" height="350" title='youtubu'
             src="https://youtube.com/embed/S83hNE_X28Y?playlist=S83hNE_X28Y&loop=1&autoplay=1&mute=1&controls=0">
           </iframe>
         </div>
@@ -30,7 +23,7 @@ const Home = () => {
           <p>fytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfyty</p>
           <p>fytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfyty</p>
           <p>fytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfyty</p>
-          <NavLink className='lightBtn' to="/tournament">เข้าร่วมทัวร์นาเมนต์</NavLink>
+          <NavLink className='lightBtn' to="/tournament">Join Tournament</NavLink>
         </div>
       </div>
     </div>

@@ -1,0 +1,27 @@
+.searchBar{
+    position: relative;
+}
+
+.searchBar input{
+    background-color: var(--fyty-color);
+    width: 25vw;
+    height: 25px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: var(--fyty-color);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.searchBar img{
+    position: absolute;
+    right: 10px;
+    top: 20%;
+}
+
+.searchBar input::placeholder {
+    opacity: 1;
+    color: #ffffff;
+}

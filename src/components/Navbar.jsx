@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from "react-router-dom";
-import { Login, Register } from ".";
+import { Login, Register, SearchBar } from ".";
 
 import "./css/Navbar.css"
 
@@ -18,18 +18,16 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navContent">
-        <div className="link"><NavLink to="/Home">หน้าแรก</NavLink></div>
-        <div className="link"><NavLink to="/Team">ทีม</NavLink></div>
-        <div className="link"><NavLink to="/Tournament">ทัวร์นาเมนต์</NavLink></div>
-        <div className="link"><NavLink to="/CreateTournament">สร้างทัวร์</NavLink></div>
-        <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >ติดต่อเรา</a></div>
-        <div className="navSearch"><input type="search" name="navSearch" placeholder='ค้นหาเพื่อน, ทีม และทัวร์นาเมนต์'/></div>
-        <div className="langBox">
-          <div className="changeLang"></div><span>TH</span>
-        </div>
-        <div className="login" onClick={() => setLoginPopup(prevLoginState => prevLoginState = true)}>ล็อกอิน</div>
+        <div className="link"><NavLink to="/Home">Home</NavLink></div>
+        <div className="link"><NavLink to="/Team">Teams</NavLink></div>
+        <div className="link"><NavLink to="/Tournament">Tournaments</NavLink></div>
+        <div className="link"><NavLink to="/CreateTournament">Create</NavLink></div>
+        <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >Contarct</a></div>
+        <div className="navSearch"><SearchBar placeholder="Find Your Friend, Team and Tournament"/></div>
+        {/* <div className="navSearch"><input type="search" name="navSearch" placeholder='Search Friend, Tornament'/></div> */}
+        <div className="login" onClick={() => setLoginPopup(prevLoginState => prevLoginState = true)}>Login</div>
         <Login loginTrigger={loginPopup} setLoginTrigger={setLoginPopup} setRegTrigger={setRegPopup}/>
-        <div className="singUp"><div className="reg" onClick={() => setRegPopup(prevRegState => prevRegState = true)}>สมัคร</div></div>
+        <div className="singUp"><div className="reg" onClick={() => setRegPopup(prevRegState => prevRegState = true)}>Join</div></div>
         <Register regTrigger={regPopup} setRegTrigger={setRegPopup} setLoginTrigger={setLoginPopup}/>
       </div>
       

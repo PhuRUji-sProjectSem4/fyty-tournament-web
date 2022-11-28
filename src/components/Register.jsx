@@ -1,19 +1,37 @@
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+
 import "./css/Register.css"
 
 const Register = (props) => {
-  const [passwordShow, setPasswordShow] = useState(false)
+  const [passwordShow, setPasswordShow] = useState(false);
+
+  const { 
+    register, 
+    handleSubmit,
+    formState: { errors} 
+  } = useForm(
+    {
+      defaultValues: {
+        username: "",
+        email: "",
+        password: ""
+      }
+    }
+  );
+
+  function onSubmit(data){
+    console.log(data);
+  };
 
   function togglePasswordShow (){
     return setPasswordShow(prev => !prev)
-  }
+  };
 
   function switchToLogin(){
-    
     props.setLoginTrigger(prev => prev=true)
     props.setRegTrigger(prev => prev=false) 
-    console.log("wtf happend");
-  }
+  };
 
 
   return (props.regTrigger)?(
@@ -22,23 +40,27 @@ const Register = (props) => {
           <div className='close' onClick={() => props.setRegTrigger(prev => prev=false)} >x</div>
             { props.children }
             <div className="headbox">
-                <h1>สมัครบัญชี Fy<span className='fytyColor'>Ty</span></h1>
-                <form className="regForm">
-                  <input className='textInput' type="text" placeholder='ชื่อผู้ใช้'/>
-                  <input className='textInput' type="email" placeholder='อีเมล'/>
-                  <div className='pass'>
-                    <input className='textInput' type={passwordShow ? "text" : "password"} placeholder='รหัสผ่าน'/>
+                <h1>Register Fy<span className='fytyColor'>Ty</span></h1>
+                <form className="regForm" onSubmit={handleSubmit(onSubmit)}>
+                  <div className="usernameWrape">
+                    <input className='textInput' type="text" placeholder='Username' {...register("username", {require: true, minLength:8, maxLength: 32, pattern: /^[A-Za-z0-9]+$/i })}/>
+                    {errors.username && <p className='errors' role="alret">Between 8 and 32 characters a-z, A-Z, 0-9</p> }
+                  </div>
+                  <div className="emailWrape">
+                    <input className='textInput' type="email" placeholder='Email' {...register("email", {required: true}) }/>
+                    {errors.email && <p className='errors' role="alret">Email is required</p> }
+                  </div>
+                  <div className='passwordWrape'>
+                    <input className='textInput' type={passwordShow ? "text" : "password"} placeholder='Password' {...register("password", {required: true, minLength:8, maxLength: 32, pattern: /^[A-Za-z0-9]+$/i }) }/>
                     <span className='passwordToggle'><img src={passwordShow ? "/asset/hide.svg" : "/asset/show.svg"} alt="icon" height="23px" width="23Px" onClick={togglePasswordShow}/></span>
+                    {errors.password && <p className='errors' role="alret">Between 8 and 32 characters a-z, A-Z, 0-9</p> }
                   </div>
-                  <div className="switchLogin" onClick={switchToLogin}>มีบัญชีแล้ว</div>
-                  <input className='submit' type="submit" value="สมัครบัญชี" />
-                  <div className="policyDetail">
-
-                  </div>
+                  <div className="switchLogin" onClick={switchToLogin}>have an accout?</div>
+                  <input className='submit' type="submit" value="Register" />
                 </form>
                 <div className="separate">
                   <div className="line"></div>
-                  <p>หรือ</p>
+                  <p>or</p>
                   <div className="line"></div>
                 </div>
                 <div className="oauth">
@@ -65,7 +87,7 @@ const Register = (props) => {
                   <div className="longLine"></div>
                 </div>
                 <div className="policyDetail">
-                  คุณยอมรับ <span>เงื่อนไขข้อตกลงการให้บริการ</span>  และ <span>นโยบายความเป็นส่วนตัว</span> 
+                  I accept FyTy's &nbsp; <span> Tearms of use</span>&nbsp;and&nbsp;<span> Privacy Notice.</span> 
                 </div>
           </div>
           

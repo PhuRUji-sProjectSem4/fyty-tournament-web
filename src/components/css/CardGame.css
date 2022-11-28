@@ -1,0 +1,24 @@
+.cardGame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 150px;
+    width: 250px;
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.cardGame :hover{
+    cursor: pointer;
+    height: 155px;
+    width: 255px;
+
+    box-shadow: 0 32px 64px 0 rgba(0,0,0,0.2);
+}
+
+.cardGame img{
+    object-fit: cover;
+    border-radius: 10px;
+}

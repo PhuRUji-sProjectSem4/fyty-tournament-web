@@ -95,7 +95,7 @@ input:focus {
 .oauth{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     justify-content: center;
     align-items: center;
     cursor: pointer;

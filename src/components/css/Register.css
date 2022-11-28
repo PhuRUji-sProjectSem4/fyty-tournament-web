@@ -14,7 +14,7 @@
 .regPop-inner{
     position: relative;
     background: var(--componet-color);
-    height: 590px;
+    min-height: 590px;
     width: 400px;
     border-radius: 8px;
 }
@@ -37,13 +37,35 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
+}
+
+.usernameWrape{
+    position: relative;
+}
+
+.emailWrape{
+    position: relative;
+}
+
+.passwordWrape{
+    position: relative;
+}
+
+.errors{
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    font-size: 10px;
+    top: 25px;
+    left: 5px;
+    z-index: 999;
 }
 
 .switchLogin{
     cursor: pointer;
     text-decoration: underline;
-    margin-right: 60%;
+    margin-right: 55%;
     font-size: 0.8em;
 }
 
@@ -53,6 +75,7 @@
     align-items: center;
     justify-content: center;
     font-size: 0.7em;
+    padding-bottom: 20px;
 }
 
 .policyDetail span{
@@ -60,3 +83,4 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
