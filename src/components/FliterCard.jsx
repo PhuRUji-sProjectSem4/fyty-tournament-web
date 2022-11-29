@@ -1,7 +1,7 @@
-import "./css/FliterCard.css"
+import React from 'react'
 import { CardGame } from "."
 
-import React from 'react'
+import "./css/FliterCard.css"
 
 const FliterCard = () => {
     const coverImg = {

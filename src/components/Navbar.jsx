@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from "react-router-dom";
-import { Login, Register, SearchBar } from ".";
+import { NavLink } from "react-router-dom";
+import { Login, Register } from ".";
 
 import "./css/Navbar.css"
 
 const Navbar = () => {
+  let searchInput = "";
 
   const [loginPopup, setLoginPopup] = useState(() => false)
   const [regPopup, setRegPopup] = useState(() => false)
+
+  function handleSearchChange(event){
+    searchInput = event.target.value;
+    console.log(searchInput);
+  }
+
   return (
     <div className='navbarBox'>
       <div className="logo">
@@ -23,14 +30,17 @@ const Navbar = () => {
         <div className="link"><NavLink to="/Tournament">Tournaments</NavLink></div>
         <div className="link"><NavLink to="/CreateTournament">Create</NavLink></div>
         <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >Contarct</a></div>
-        <div className="navSearch"><SearchBar placeholder="Find Your Friend, Team and Tournament"/></div>
-        {/* <div className="navSearch"><input type="search" name="navSearch" placeholder='Search Friend, Tornament'/></div> */}
+        <div className="navSearch">
+          <div  className='searchBar'>
+            <input type="text" placeholder='Search your friend, team and Tournament' onChange={handleSearchChange} />
+            <img src="/asset/search.svg" alt="searchIcon" height="25px" width="25px"/>
+          </div>
+        </div>
         <div className="login" onClick={() => setLoginPopup(prevLoginState => prevLoginState = true)}>Login</div>
         <Login loginTrigger={loginPopup} setLoginTrigger={setLoginPopup} setRegTrigger={setRegPopup}/>
         <div className="singUp"><div className="reg" onClick={() => setRegPopup(prevRegState => prevRegState = true)}>Join</div></div>
         <Register regTrigger={regPopup} setRegTrigger={setRegPopup} setLoginTrigger={setLoginPopup}/>
       </div>
-      
     </div>
   )
 }

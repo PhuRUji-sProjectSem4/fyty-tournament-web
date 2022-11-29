@@ -22,6 +22,7 @@ const Register = (props) => {
 
   function onSubmit(data){
     console.log(data);
+    props.setRegTrigger(prev => prev=false)
   };
 
   function togglePasswordShow (){

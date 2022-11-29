@@ -21,6 +21,7 @@ const Login = (props) => {
 
   function onSubmit(data){
     console.log(data);
+    props.setLoginTrigger(prev => prev=false)
   };
 
   function togglePasswordShow (){
