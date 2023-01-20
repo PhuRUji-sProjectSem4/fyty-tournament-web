@@ -9,6 +9,10 @@ const CreateTeam = (props) => {
     let url = "";
     const [imageUpload, setImageUpload] = useState(null);
 
+    function imageChange(event){
+        setImageUpload(prev => prev = event.target.files[0])
+    }
+
     async function uploadImage() {
         if(imageUpload == null) return;  
         const imageRef = ref(storage, `Team/${imageUpload.name + v4()}`)
@@ -23,7 +27,7 @@ const CreateTeam = (props) => {
                 <div className="close" onClick={() => props.setCreateTrigle(prev => prev=false)}>x</div>
                 <h1>Create <span className='fytyColor'>Team</span></h1>
                 <div className="formWrape">
-                    <input type="file" onChange={(event) => {setImageUpload(prev => prev = event.target.files[0])}}/>
+                    <input type="file" onChange={(event) => imageChange(event)}/>
                     <input type="button" value="upload" onClick={uploadImage}/>
                 </div>
             </div>

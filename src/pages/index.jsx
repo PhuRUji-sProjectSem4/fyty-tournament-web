@@ -6,4 +6,3 @@ export { default as CreateTournament } from "./CreateTournament";
 {/* User Management */}
 export { default as MyProfile } from "./MyProfile";
 export { default as MySchedule } from "./MySchedule";
-export { default as MyTeam } from "./MyTeam";

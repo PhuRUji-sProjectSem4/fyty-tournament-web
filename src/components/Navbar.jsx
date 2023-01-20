@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { useContext } from 'react';
+import { generatePath, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { Login, Register } from ".";
+import { UserContext } from '../App';
+import { ClientRounteKey } from '../path/coverPath';
 
 import "./css/Navbar.css"
+import NavPopup from './NavPopup';
 
 const Navbar = () => {
   let searchInput = "";
+  let path = "/asset/caret_down.svg"
+  const navigate = useNavigate();
 
   const [loginPopup, setLoginPopup] = useState(() => false)
   const [regPopup, setRegPopup] = useState(() => false)
 
+  const [navPopup, setNavPopup] = useState(() => false)
+
+  const [user, setUser] = useContext(UserContext);
+
   function handleSearchChange(event){
     searchInput = event.target.value;
     console.log(searchInput);
+  }
+
+  function togglePopup(){
+    setNavPopup(() => !navPopup)
   }
 
   return (
@@ -25,10 +39,10 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navContent">
-        <div className="link"><NavLink to="/Home">Home</NavLink></div>
-        <div className="link"><NavLink to="/Team">Teams</NavLink></div>
-        <div className="link"><NavLink to="/Tournament">Tournaments</NavLink></div>
-        <div className="link"><NavLink to="/CreateTournament">Create</NavLink></div>
+        <div className="link"><NavLink to="/home">Home</NavLink></div>
+        <div className="link"><NavLink to="/team">Teams</NavLink></div>
+        <div className="link"><NavLink to="/tournament">Tournaments</NavLink></div>
+        <div className="link"><NavLink to="/createTournament">Create</NavLink></div>
         <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >Contarct</a></div>
         <div className="navSearch">
           <div  className='searchBar'>
@@ -36,10 +50,23 @@ const Navbar = () => {
             <img src="/asset/search.svg" alt="searchIcon" height="25px" width="25px"/>
           </div>
         </div>
-        <div className="login" onClick={() => setLoginPopup(prevLoginState => prevLoginState = true)}>Login</div>
-        <Login loginTrigger={loginPopup} setLoginTrigger={setLoginPopup} setRegTrigger={setRegPopup}/>
-        <div className="singUp"><div className="reg" onClick={() => setRegPopup(prevRegState => prevRegState = true)}>Join</div></div>
-        <Register regTrigger={regPopup} setRegTrigger={setRegPopup} setLoginTrigger={setLoginPopup}/>
+        {user ? (
+          <div className="userInfo">
+            <img className='profileIcon' src={user?.protraitUrl} alt="profilePic"/>
+            {user?.username}
+            <img className='iconlog' src={navPopup ? "/asset/caret_up.svg" : "/asset/caret_down.svg"} alt=">" onClick={togglePopup} />
+            {navPopup ? <NavPopup toggleNavPopup = {setNavPopup}/>: <></>}
+          </div>
+        ): (
+          <div className="login-box">
+          <div className="login" onClick={() => setLoginPopup(prevLoginState => prevLoginState = true)}>Login</div>
+          <Login loginTrigger={loginPopup} setLoginTrigger={setLoginPopup} setRegTrigger={setRegPopup}/>
+          <div className="singUp"><div className="reg" onClick={() => setRegPopup(prevRegState => prevRegState = true)}>Join</div></div>
+          <Register regTrigger={regPopup} setRegTrigger={setRegPopup} setLoginTrigger={setLoginPopup}/>
+          </div>
+        ) }
+        
+        
       </div>
     </div>
   )

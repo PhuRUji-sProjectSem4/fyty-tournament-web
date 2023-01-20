@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form'
+import { localLogin } from '../apis/auth/login';
+import { UserContext } from '../App';
 
 import './css/Login.css'
 
 const Login = (props) => {
   const [passwordShow, setPasswordShow] = useState(false);
+  const [user, setUser] = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
   } = useForm(
     {
       defaultValues:{
@@ -19,8 +22,10 @@ const Login = (props) => {
     }
   );
 
-  function onSubmit(data){
-    console.log(data);
+  async function onSubmit(data){
+    const user = await localLogin(data);
+    setUser(user);
+    localStorage.setItem("token", user.accessToken);
     props.setLoginTrigger(prev => prev=false)
   };
 
@@ -42,10 +47,10 @@ const Login = (props) => {
             </div>
             <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
               <div className="usernameWrape">
-                <input className='textInput' type="text" placeholder='Username or Email'/>
+                <input className='textInput' type="text" placeholder='Username' {...register("username")}/>
               </div>
               <div className='passwordWrape'>
-                <input className='textInput' type={passwordShow ? "text" : "password"} placeholder='Password'/>
+                <input className='textInput' type={passwordShow ? "text" : "password"} placeholder='Password' {...register("password")}/>
                 <span className='passwordToggle'><img src={passwordShow ? "/asset/hide.svg" : "/asset/show.svg"} alt="icon" height="23px" width="23Px" onClick={togglePasswordShow}/></span>
               </div>
               <div className='forgetPassword'><div>forget password?</div><div onClick={switchToReg}>register</div></div>

@@ -1,26 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { CardGame } from "."
+import { GameContext } from '../App'
+import { coverImg } from '../path/coverPath'
 
 import "./css/FliterCard.css"
 
 const FliterCard = () => {
-    const coverImg = {
-        allGames : "/asset/all.png",
-        dotaImg : "/asset/dota2.jpg",
-        rovImg : "/asset/rov.webp",
-        pubgImg : "/asset/pubg.jpg",
-        valoImg : "/asset/valo.jpg"
-    };
+    const games = useContext(GameContext);
+    const gameList = games.map((game) =>
+        <CardGame key={game.id} coverImg={game.coverUrl}/> 
+    );
 
     return (
         <div className="fliterContrainer">
             <div className="selGame"><h1>Select Game</h1></div>
             <div className="fliterCardWrape">
-            <CardGame coverImg={coverImg.allGames}/>
-            <CardGame coverImg={coverImg.dotaImg}/>
-            <CardGame coverImg={coverImg.rovImg}/>
-            <CardGame coverImg={coverImg.pubgImg}/>
-            <CardGame coverImg={coverImg.valoImg}/>
+                <CardGame coverImg={coverImg.allGames}/>
+                { gameList }
             </div>
         </div>
   )
