@@ -15,7 +15,7 @@
 .createTeamPopup{
     position: relative;
     background: var(--componet-color);
-    min-height: 590px;
+    min-height: 565px;
     width: 400px;
     z-index: 870;
     border-radius: 8px;
@@ -47,4 +47,30 @@
     z-index: 999;
 }
 
+.formWrape{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+    gap: 14px;
+}
+
+.formWrape label{
+    color: #b6b6b6;
+}
+
+.uploadWrape{
+    height: 85px;
+    width: 315px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--input-color);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}

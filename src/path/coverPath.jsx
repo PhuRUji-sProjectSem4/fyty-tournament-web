@@ -6,6 +6,12 @@ export const  coverImg = {
     valoImg : "/asset/valo.jpg"
 };
 
+export const  coverImgFirebase = {
+    dotaImg : "https://firebasestorage.googleapis.com/v0/b/fyty-tournament.appspot.com/o/Public%2FGameCover%2Fdota2.jpg?alt=media&token=4353608c-21d9-4ba3-b1da-d85baf262f8e",
+    rovImg : "https://firebasestorage.googleapis.com/v0/b/fyty-tournament.appspot.com/o/Public%2FGameCover%2Frov.webp?alt=media&token=00b49d19-01d1-490d-99a5-d2008c5665b3",
+    valoImg : "https://firebasestorage.googleapis.com/v0/b/fyty-tournament.appspot.com/o/Public%2FGameCover%2Fvalo.jpg?alt=media&token=4a807c94-df56-4c8f-ac5d-253da7247877"
+};
+
 export const ApiRounteKey = {
     //game
     getGames: "/game",
@@ -42,6 +48,19 @@ export const ApiRounteKey = {
     acceptRequest: "/team/request/:id/accepted",
     acceptdeclined: "/team/request/:id/declined",
 
+    getTournament: "/tournament",
+    getTournamentEach: "/tournament/:id",
+    createTournament: "/tournament",
+    updateTournament: "/tournament/:id/detail",
+    registerTournament: "/tournament/:id/register",
+    startTournament: "/tournament/:id/start",
+    endTournament: "/tournament/:id/end",
+    deleteTournament: "/tournament/:id",
+
+    joinTournament: "/tournament/joined",
+    getTournamentJoined: "/tournament/:id/joined",
+    getTournamentJoinedEach: "/tournament/joined/:id",
+    
     localLogin: "/auth/login"
 }
 

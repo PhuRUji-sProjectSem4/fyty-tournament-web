@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { generatePath, useNavigate } from 'react-router-dom'
 import { UserContext } from '../App';
+import coreApi from '../core/axios';
 import { ClientRounteKey } from '../path/coverPath';
 import "./css/NavPopup.css"
 
@@ -20,9 +21,12 @@ const NavPopup = (prop) => {
     }
 
     function logOut(){
+        prop.toggleNavPopup(prev => prev=false)
         setUser(null)
         navigate(generatePath(ClientRounteKey.home))
         localStorage.removeItem("token")
+        coreApi.defaults.headers.common["Authorization"] = "";
+
     }
 
     return (

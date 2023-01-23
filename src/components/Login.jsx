@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form'
 import { localLogin } from '../apis/auth/login';
 import { UserContext } from '../App';
+import coreApi from '../core/axios';
 
 import './css/Login.css'
 
@@ -26,6 +27,7 @@ const Login = (props) => {
     const user = await localLogin(data);
     setUser(user);
     localStorage.setItem("token", user.accessToken);
+    coreApi.defaults.headers.common["Authorization"] = "Bearer " + user.accessToken;
     props.setLoginTrigger(prev => prev=false)
   };
 

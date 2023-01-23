@@ -9,22 +9,19 @@ import { ApiRounteKey, ClientRounteKey } from "./path/coverPath";
 import { getGames } from "./apis/game/game-queries";
 import errorPage from "./pages/ErrorPage";
 import TeamEach from "./pages/TeamEach";
+import { useQuery } from "react-query";
 
 export const GameContext = React.createContext(); 
 export const UserContext = React.createContext();
 
-const App = () => {
-  const [games, setGames] = useState(null);
-  const [error, setError] = useState(null);
 
+const App = () => {
   const user = useState(null);
 
-
-  useEffect(() => {
-    getGames()
-      .then((gamesData) => setGames(gamesData))
-      .catch((error) => setError(error))
-  }, []);
+  const {data = [], error, isLoading} = useQuery(
+    "games",
+    getGames
+  )
 
   if(error) return (
     <errorPage/>
@@ -32,7 +29,7 @@ const App = () => {
  
   return (
     <UserContext.Provider value={user}>
-      <GameContext.Provider value={games}>
+      <GameContext.Provider value={data}>
         <BrowserRouter>
             <div>
                 <div><Navbar /></div>

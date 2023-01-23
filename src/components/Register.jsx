@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { registerFyTy } from '../apis/user/register-queries';
 
 import "./css/Register.css"
 
@@ -21,8 +22,8 @@ const Register = (props) => {
   );
 
   function onSubmit(data){
-    console.log(data);
-    props.setRegTrigger(prev => prev=false)
+    registerFyTy(data)
+    props.setRegTrigger(prev => prev =false)
   };
 
   function togglePasswordShow (){

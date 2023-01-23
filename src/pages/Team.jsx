@@ -1,22 +1,18 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { useQuery } from 'react-query'
 import { getTeams } from '../apis/team/team-queries'
 import { FliterCard, CreateTeam, TeamCard } from "../components/index"
-import { errorPage } from "./ErrorPage"
-import { coverImg } from '../path/coverPath' 
 
 import "./css/Team.css"
 
 const Team = () => {
   const [createTeamPopup, setCreateTeamPopup] = useState(() => false);
-  const [teams, setTeams] = useState([]);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    getTeams()
-      .then((teamsData) => setTeams(teamsData))
-      .catch((error) => setError(error))
-  },[]);
+  const {data: teams =[], error, isLoading} = useQuery(
+    "teams",
+    getTeams
+  )
 
   let searchInput = "";
 
