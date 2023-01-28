@@ -28,3 +28,21 @@ export function getTeamEach(id){
       .catch(reject)
   })
 }
+
+export function getTeamMember(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .get(generatePath(ApiRounteKey.getTeamMember, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  })
+}
+
+export function getTeamTourJoined(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .get(generatePath(ApiRounteKey.getTeamTourJoined, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  })
+}

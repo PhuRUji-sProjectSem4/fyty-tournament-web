@@ -10,6 +10,7 @@ import { getGames } from "./apis/game/game-queries";
 import errorPage from "./pages/ErrorPage";
 import TeamEach from "./pages/TeamEach";
 import { useQuery } from "react-query";
+import TournamentEach from "./pages/TournamentEach";
 
 export const GameContext = React.createContext(); 
 export const UserContext = React.createContext();
@@ -48,6 +49,7 @@ const App = () => {
 
                         {/* Detail */}
                         <Route path="/team/:id"  element={<TeamEach />} />
+                        <Route path="/tournament/:id"  element={<TournamentEach />} />
 
                     </Routes>
                 </div>

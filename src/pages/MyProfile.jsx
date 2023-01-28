@@ -1,8 +1,13 @@
 import React from 'react'
+import { useContext } from 'react'
+import { UserContext } from '../App'
 
 const MyProfile = () => {
+
+  const [user, setUser] = useContext(UserContext);
+
   return (
-    <div>MyProfile</div>
+    <div>{user.username}</div>
   )
 }
 

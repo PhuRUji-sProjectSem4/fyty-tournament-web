@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { getTeams } from '../apis/team/team-queries'
 import { FliterCard, CreateTeam, TeamCard } from "../components/index"
 
 import "./css/Team.css"
+import LoadingPage from './LoadingPage'
 
 const Team = () => {
   const [createTeamPopup, setCreateTeamPopup] = useState(() => false);
@@ -28,6 +28,10 @@ const Team = () => {
   const teamList = teams.map((team) =>
     <TeamCard key={team.id} {...team}/>
   );
+
+  if(isLoading){
+    return (<LoadingPage/>)
+  }
 
   return (
     <div className='team'>

@@ -23,11 +23,14 @@ export const ApiRounteKey = {
     getMyProfile: "/user/me",
     register: "/user/register",
     updateProfile: "/user/me", 
+    getUserSchedule: "/user/schedule/me", 
+    getUserHistory: "/user/history/me", 
 
     //team
     getTeams: "/team",
     getTeamsByGame: "/team/game/:id",
     getTeamEach: "/team/:id",
+    getTeamTourJoined: "/team/:id/joined",
     createTeam: "/team",
     updateTeam: "/team/:id",
     deleteTeam: "/team/:id/delete",
@@ -35,6 +38,7 @@ export const ApiRounteKey = {
     //team member
     getAllTeamMembers: "/team/member",
     getTeamMember: "/team/:id/member",
+    getTeamJoiedTour: "/team/:id/joined",
     updateCoach: "/team/member/:id/coach",
     updateManager: "/team/member/:id/manger",
     updatePlayer: "/team/member/:id/player",
@@ -84,25 +88,19 @@ export const ClientRounteKey = {
     getTeams: "/team",
     getTeamsByGame: "/team/game/:id",
     getTeamEach: "/team/:id",
-    createTeam: "/team",
-    updateTeam: "/team/:id",
-    deleteTeam: "/team/:id/delete",
+   
 
     //team member
     getAllTeamMembers: "/team/member",
     getTeamMember: "/team/:id/member",
-    updateCoach: "/team/member/:id/coach",
-    updateManager: "/team/member/:id/manger",
-    updatePlayer: "/team/member/:id/player",
-    kick: "/team/member/:id/kick",
-    leave: "/team/:id/member/leave",
+    
 
     //team request
     getTeamRequest: "/team/:id/request",
     getMyTeamRequest: "/team/request/me",
-    createRequest: "/team/request",
-    acceptRequest: "/team/request/:id/accepted",
-    acceptdeclined: "/team/request/:id/declined",
+
+    tournamentEach: "/tournament/:id",
+    
 
 
 }
