@@ -1,0 +1,78 @@
+.tourCard{
+    position: relative;
+    width: 430px;
+    height: 250px;
+    border-radius: 10px;
+    margin: 0 auto;
+
+    background: var(--bg-color);
+
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.tourCard:hover{
+    box-shadow: 0 0px 16px 0 rgb(10, 253, 221);
+    cursor: pointer;
+}
+
+.tourCard img{
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.tourdetailContrainer{
+    position: absolute;
+    bottom: 0;
+
+    background: var(--componet-color);
+    width: 100%;
+    height: 50%;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.tourdetail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 22px;
+}
+
+.tourName{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.currentJoined{
+    position: absolute;
+    top: -30px;
+    right: 15px;
+
+    width: 105px;
+    height: 1.6em;
+    border-radius: 5px;
+    
+    background: var(--componet-color);
+
+    text-align: center;
+}
+
+.joined{
+    margin: 0 3px;
+}
+
+.reg-label{
+    color: var(--line-color);
+}
+
+.register-time-open{
+    color: rgb(108, 211, 108);
+}
+
+.register-time-close{
+    color: var(--noti-color);
+}

@@ -1,8 +1,8 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom'
 import { getTeamEach, getTeamMember, getTeamTourJoined } from '../apis/team/team-queries';
+import LoadingPage from './LoadingPage';
 
 const TeamEach = () => {
     const { id } = useParams();
@@ -33,6 +33,9 @@ const TeamEach = () => {
       <div>{tour.tourName}</div>
     );
     
+  if(teamLoading || memberLoading || tourLoading){
+    return ( <LoadingPage/> )
+  }
 
   return (
     <div>

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query';
 import { getTournament } from '../apis/tournament/tournament-querie';
 import { FliterCard } from '../components';
+import TournamentCard from '../components/TournamentCard';
 
 import "./css/Tournament.css"
+import LoadingPage from './LoadingPage';
 
 const Tournament = () => {
   const [searchInput, setSearchInput] = useState()
@@ -14,13 +16,17 @@ const Tournament = () => {
   )
   console.log(tournaments);
   const tournamentList = tournaments.map((tour) =>
-    <div>{tour.tourName}</div>
+    <TournamentCard key={tour.id} {...tour}/>
   );
 
   function handleSearchChange(event){
     setSearchInput(event.target.value);
     console.log(searchInput);
   };
+
+  if(isLoading){
+    return ( <LoadingPage/> )
+  }
 
   return (
     <div className='tournament'>
