@@ -71,6 +71,8 @@ const CreateTeam = (props) => {
         //await createTeam(payload)
         props.setCreateTrigle(prev => prev=false)
     }
+    
+    //img 1600px 300px
 
     return (props.createTrigle) ? (
         <div className="createTeamOuter">
@@ -89,7 +91,7 @@ const CreateTeam = (props) => {
                         <input className='textInput' type="text" name="slogan" placeholder='Slogan' {...register("slogan", {require: true, minLength:1, maxLength: 32, pattern: /^[A-Za-z0-9]+$/i })}/>
                         <input className='textInput' type="text" name="Description" placeholder='Description' {...register("description", {require: true, minLength:1, maxLength: 32, pattern: /^[A-Za-z0-9]+$/i })}/>
                         <div className="uploadWrape">
-                            <label>Team Cover (optional)</label>
+                            <label>Team Cover (optional)</label> 
                             <input className='coverUpload' type="file" onChange={(event) => coverChange(event)}/>
                         </div>
                         <input className='submit' type="submit" value="Create Your Team" />

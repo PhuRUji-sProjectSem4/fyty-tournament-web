@@ -1,0 +1,64 @@
+.teamEach{
+    padding: 1em 3.5em;
+}
+
+.teamEachHead{
+    color: var(--line-color);
+    font-weight: bold;
+}
+
+.teamContent{
+    margin-top: 190px;
+}
+
+
+.teamLogo{
+    display: grid;
+    grid-template-columns: 160px 350px;
+    
+    width: 440px;
+    
+    column-gap: 20px;
+}
+
+.teamLogo img{
+    width: 160px;
+    height: 160px;
+
+    border-radius: 10px;
+}
+
+.teamCover img{
+    position: absolute;
+    top: 80px;
+    left: 0;
+
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+
+    z-index: -10;
+}
+
+.name-des{
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    margin-top: 60px;
+}
+
+.name-des h1{
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.team-detail-box{
+    margin-top: 40px ;
+
+    width: 100%;
+    min-height: 500px;
+    
+    background: var(--componet-color);
+
+    border-radius: 20px;
+}
