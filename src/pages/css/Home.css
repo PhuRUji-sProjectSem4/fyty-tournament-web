@@ -11,6 +11,9 @@
     height: 240px;
     width: 1200px;
     background: #000;
+
+    font-size: 5em;
+    text-align: center;
 }   
 
 .vdoWrapper{

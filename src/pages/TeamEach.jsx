@@ -7,11 +7,15 @@ import LoadingPage from './LoadingPage';
 import "./css/TeamEach.css"
 import { useContext } from 'react';
 import { UserContext } from '../App';
+import { useState } from 'react';
+import MemberList from '../components/MemberList';
+import TournamentList from '../components/TournamentList';
 
 const TeamEach = () => {
     const { id } = useParams();
 
     const user = useContext(UserContext);
+    const [showTour, setShowTour] = useState(true);
 
     const {data: team = {}, error: teamError, isLoading: teamLoading } = useQuery(
       "team",
@@ -30,14 +34,21 @@ const TeamEach = () => {
 
     
     const memberList = members.map((member) => 
-      <div>{member.username}</div>
+      <MemberList key={member.id} {...member}/>
     );
    
-
-    
     const tourList = tours.map((tour) => 
-      <div>{tour.tourName}</div>
+      <TournamentList key={tour.id} {...tour}/>
     );
+
+    function tourShow(){
+      setShowTour(prev => prev = true)
+    }
+
+    function memberShow(){
+      setShowTour(prev => prev = false)
+    }
+    
     
   if(teamLoading || memberLoading || tourLoading){
     return ( <LoadingPage/> )
@@ -66,7 +77,18 @@ const TeamEach = () => {
           </div>
           
           <div className="team-detail-box">
-            
+            <div className="select-detail">
+              <div className={showTour ? "tour-sel" : "tour-not-sel" }onClick={tourShow}>
+                Tournament History
+              </div>
+              <div className={showTour ? "mem-not-sel" : "mem-sel" } onClick={memberShow}>
+                Team Member
+              </div>
+            </div>
+            {showTour ? 
+              <div className="tourList">{tourList}</div>: 
+              <div className="memberList">{memberList}</div>
+            }
           </div>
         </div>
 

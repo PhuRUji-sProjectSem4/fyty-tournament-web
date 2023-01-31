@@ -9,7 +9,8 @@ const Home = () => {
   return (
     <div>
       <div className="ads">
-       
+        Just Let It Slide
+        <div className="slide">....</div>
       </div>
       <div className="vdoWrapper">
         <div className="vdo">
