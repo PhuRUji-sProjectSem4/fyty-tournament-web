@@ -5,16 +5,17 @@ import { getTeamEach, getTeamMember, getTeamTourJoined } from '../apis/team/team
 import LoadingPage from './LoadingPage';
 
 import "./css/TeamEach.css"
-import { useContext } from 'react';
-import { UserContext } from '../App';
+
 import { useState } from 'react';
 import MemberList from '../components/MemberList';
 import TournamentList from '../components/TournamentList';
 
+
+export const TeamContext = React.createContext();
+
 const TeamEach = () => {
     const { id } = useParams();
 
-    const user = useContext(UserContext);
     const [showTour, setShowTour] = useState(true);
 
     const {data: team = {}, error: teamError, isLoading: teamLoading } = useQuery(
@@ -34,7 +35,7 @@ const TeamEach = () => {
 
     
     const memberList = members.map((member) => 
-      <MemberList key={member.id} {...member}/>
+      <MemberList key={member.userData.id}  {...member}/>
     );
    
     const tourList = tours.map((tour) => 
@@ -59,40 +60,43 @@ const TeamEach = () => {
   }
 
   return (
-    <div className='teamEach'>
-        <div className="teamCover">
-          <img src={team.coverUrl} alt="team cover" />
-        </div>
-        <div className="teamEachHead">Team Profile</div>
+    <TeamContext.Provider value={team}>
 
-        <div className="teamContent">
-          <div className="teamLogo">
-            <img className='logo' src={team.logoUrl} alt="logo" />
-            <div className="name-des">
-              <h1>{team.teamName}</h1>
-              <div className="teamDes">
-                {team.slogan}
-              </div>
-            </div>
+      <div className='teamEach'>
+          <div className="teamCover">
+            <img src={team.coverUrl} alt="team cover" />
           </div>
+          <div className="teamEachHead">Team Profile</div>
           
-          <div className="team-detail-box">
-            <div className="select-detail">
-              <div className={showTour ? "tour-sel" : "tour-not-sel" }onClick={tourShow}>
-                Tournament History
-              </div>
-              <div className={showTour ? "mem-not-sel" : "mem-sel" } onClick={memberShow}>
-                Team Member
+          <div className="teamContent">
+            <div className="teamLogo">
+              <img className='logo' src={team.logoUrl} alt="logo" />
+              <div className="name-des">
+                <h1>{team.teamName}</h1>
+                <div className="teamDes">
+                  {team.slogan}
+                </div>
               </div>
             </div>
-            {showTour ? 
-              <div className="tourList">{tourList}</div>: 
-              <div className="memberList">{memberList}</div>
-            }
+            
+            <div className="team-detail-box">
+              <div className="select-detail">
+                <div className={showTour ? "tour-sel" : "tour-not-sel" }onClick={tourShow}>
+                  Tournament History
+                </div>
+                <div className={showTour ? "mem-not-sel" : "mem-sel" } onClick={memberShow}>
+                  Team Member
+                </div>
+              </div>
+              {showTour ? 
+                <div className="tourList">{tourList}</div> :  
+                <div className="memberList">{memberList}</div>
+              }
+            </div>
           </div>
-        </div>
 
-    </div>
+      </div>
+    </TeamContext.Provider>
   )
 }
 

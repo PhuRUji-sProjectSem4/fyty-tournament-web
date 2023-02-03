@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form'
+import { isError, useMutation } from 'react-query';
 import { localLogin } from '../apis/auth/login';
 import { UserContext } from '../App';
 import coreApi from '../core/axios';
+import LoadingPage from '../pages/LoadingPage';
 
 import './css/Login.css'
 
 const Login = (props) => {
   const [passwordShow, setPasswordShow] = useState(false);
+  const [logingError, setLoginError] = useState("");
   const [user, setUser] = useContext(UserContext);
 
   const {
@@ -23,8 +26,18 @@ const Login = (props) => {
     }
   );
 
+  const { isLoading: isLoadingLogin, mutateAsync: mutateAsyncLogin} = useMutation(
+    localLogin,
+    {
+      onError() {
+        setLoginError("Username or Password is Wrong");
+      }
+    }
+  )
+
   async function onSubmit(data){
-    const user = await localLogin(data);
+    console.log("logim");
+    const user = await mutateAsyncLogin(data);
     setUser(user);
     localStorage.setItem("token", user.accessToken);
     coreApi.defaults.headers.common["Authorization"] = "Bearer " + user.accessToken;
@@ -42,7 +55,9 @@ const Login = (props) => {
 
   return (props.loginTrigger)?(
     <div className="loginPop">
-        <div className="loginPop-inner">
+      <div className="loginPop-inner">
+        {isLoadingLogin ? <div className='loginLoad'><LoadingPage /></div> :
+            <>
             <div className='close' onClick={() => props.setLoginTrigger(prev => prev=false)} >x</div>
             <div className="headbox">
                 <h1>Login Fy<span className='fytyColor'>Ty</span></h1>
@@ -55,6 +70,7 @@ const Login = (props) => {
                 <input className='textInput' type={passwordShow ? "text" : "password"} placeholder='Password' {...register("password")}/>
                 <span className='passwordToggle'><img src={passwordShow ? "/asset/hide.svg" : "/asset/show.svg"} alt="icon" height="23px" width="23Px" onClick={togglePasswordShow}/></span>
               </div>
+              {logingError === "" ? <></> : <div className="err-message">{logingError}</div>}
               <div className='forgetPassword'><div>forget password?</div><div onClick={switchToReg}>register</div></div>
               <input className='submit' type="submit" value="Login" />
             </form>
@@ -83,6 +99,8 @@ const Login = (props) => {
                 <span className='Text'>Sign in with Discord</span>
               </div>
             </div>
+            </>
+          }
         </div>
     </div>
   ) : "";

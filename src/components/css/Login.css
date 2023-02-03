@@ -70,5 +70,21 @@
     position: relative;
 }
 
+.loginLoad{
+    background: var(--bg-color);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.err-message{
+    color: var(--noti-color);
+    font-size: 0.8em;
+}
 
 
+.loginPop-inner .discordWrapper{
+    margin-bottom: 30px;
+}

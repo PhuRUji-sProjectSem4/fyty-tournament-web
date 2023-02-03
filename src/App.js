@@ -11,6 +11,7 @@ import errorPage from "./pages/ErrorPage";
 import TeamEach from "./pages/TeamEach";
 import { useQuery } from "react-query";
 import TournamentEach from "./pages/TournamentEach";
+import { getUser } from "./apis/user/user-queries";
 
 export const GameContext = React.createContext(); 
 export const UserContext = React.createContext();
@@ -23,6 +24,7 @@ const App = () => {
     "games",
     getGames
   )
+
 
   if(error) return (
     <errorPage/>

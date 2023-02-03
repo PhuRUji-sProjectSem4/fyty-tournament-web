@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useMutation } from 'react-query';
 import { registerFyTy } from '../apis/user/register-queries';
+import LoadingPage from '../pages/LoadingPage';
 
 import "./css/Register.css"
 
 const Register = (props) => {
   const [passwordShow, setPasswordShow] = useState(false);
-
+  const [regError, setRegError] = useState("");
   const { 
     register, 
     handleSubmit,
@@ -21,8 +23,20 @@ const Register = (props) => {
     }
   );
 
-  function onSubmit(data){
-    registerFyTy(data)
+  const { isLoading: isRegLoading, mutateAsync: mutateAsyncReg} = useMutation(
+    registerFyTy,
+    {
+      onSuccess(){
+        console.log("reg success");
+      },
+      onError() {
+        setRegError("Username or Email is Duplicate");
+      }
+    }
+  )
+
+  async function onSubmit(data){
+    await mutateAsyncReg(data);
     props.setRegTrigger(prev => prev =false)
   };
 
@@ -39,8 +53,9 @@ const Register = (props) => {
   return (props.regTrigger)?(
     <div className="regPop">
       <div className="regPop-inner">
+        {isRegLoading ? <div className='loginLoad'><LoadingPage /></div>: 
+        <>
           <div className='close' onClick={() => props.setRegTrigger(prev => prev=false)} >x</div>
-            { props.children }
             <div className="headbox">
                 <h1>Register Fy<span className='fytyColor'>Ty</span></h1>
                 <form className="regForm" onSubmit={handleSubmit(onSubmit)}>
@@ -57,6 +72,7 @@ const Register = (props) => {
                     <span className='passwordToggle'><img src={passwordShow ? "/asset/hide.svg" : "/asset/show.svg"} alt="icon" height="23px" width="23Px" onClick={togglePasswordShow}/></span>
                     {errors.password && <p className='errors' role="alret">Between 8 and 32 characters a-z, A-Z, 0-9</p> }
                   </div>
+                  {regError === "" ? <></> : <div className='regError'>{regError}</div> }
                   <div className="switchLogin" onClick={switchToLogin}>have an accout?</div>
                   <input className='submit' type="submit" value="Register" />
                 </form>
@@ -92,6 +108,8 @@ const Register = (props) => {
                   I accept FyTy's &nbsp; <span> Tearms of use</span>&nbsp;and&nbsp;<span> Privacy Notice.</span> 
                 </div>
           </div>
+        </>
+        }  
           
         </div>
     </div>

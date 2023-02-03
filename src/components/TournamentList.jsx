@@ -15,6 +15,7 @@ const TournamentList = (props) => {
     <div className="tourList-card" onClick={onCardClick}>
         <div className="tourHead">Tournament</div>
         <div className="tour-name">{props.tourName}</div>
+        <div className="start-time">{(props.tourStartTime).slice(0,10) }</div>
     </div>
   )
 }
