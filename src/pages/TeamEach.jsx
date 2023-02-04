@@ -88,9 +88,10 @@ const TeamEach = () => {
                   Team Member
                 </div>
               </div>
-              {showTour ? 
-                <div className="tourList">{tourList}</div> :  
-                <div className="memberList">{memberList}</div>
+              {
+                showTour ? 
+                  <div className="tourList">{tourList}</div> : 
+                  <div className="memberList">{memberList}</div>
               }
             </div>
           </div>

@@ -36,7 +36,6 @@ const Login = (props) => {
   )
 
   async function onSubmit(data){
-    console.log("logim");
     const user = await mutateAsyncLogin(data);
     setUser(user);
     localStorage.setItem("token", user.accessToken);

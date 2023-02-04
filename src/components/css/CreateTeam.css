@@ -74,3 +74,26 @@
     justify-content: center;
     align-items: center;
 }
+
+.createTeamPopup select{
+    height: 35px;
+    width: 320px;
+
+    background: var(--input-color);
+    color: #b6b6b6;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+
+.teamLoad{
+    background: var(--bg-color);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
