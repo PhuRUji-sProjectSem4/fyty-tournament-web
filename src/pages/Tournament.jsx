@@ -28,7 +28,7 @@ const Tournament = () => {
     console.log(searchInput);
   };
 
-  if(error || 1){
+  if(error){
     return ( navigate(ClientRounteKey.error))
   }
 
