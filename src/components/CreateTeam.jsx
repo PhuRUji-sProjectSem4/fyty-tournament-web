@@ -10,10 +10,12 @@ import { useContext } from 'react'
 import { GameContext, UserContext } from '../App'
 import { useMutation } from 'react-query'
 import LoadingPage from '../pages/LoadingPage'
+import { generatePath, useNavigate } from 'react-router-dom';
+import { ClientRounteKey } from '../path/coverPath';
 
 const CreateTeam = (props) => {
-    const [coverUrl, setCoverUrl] = useState("");
-    const [logoUrl, setLogoUrl] = useState("https://firebasestorage.googleapis.com/v0/b/fyty-tournament.appspot.com/o/Public%2FDefaultPicture%2Fdefault%20pic.png?alt=media&token=7301ec3d-ee0b-4aa8-a6c9-ab194d714275");
+    const navigate = useNavigate();
+
     const [gameSel, setGameSel] = useState("");
     const [teamError, setTeamError] = useState("");
 
@@ -63,30 +65,38 @@ const CreateTeam = (props) => {
 
     async function uploadCoverImage() {
         if(coverUpload == null) return;  
+
+        let coverUrl = "";
+
         const coverimageRef = ref(storage, `Team/${coverUpload.name + v4()}`)
 
-        await uploadBytes(coverimageRef, coverUpload).then((snaphsot) => {
-            getDownloadURL(snaphsot.ref).then((coverLink) => setCoverUrl(coverLink))
-        })
+        const snapshot =  await uploadBytes(coverimageRef, coverUpload);
+        coverUrl = await getDownloadURL(snapshot.ref);
+
+        return coverUrl;
     };
 
     async function uploadLogoImage() {
         if(logoUpload == null) return;  
-        const logoimageRef = ref(storage, `Team/${logoUpload.name + v4()}`)
 
-        await uploadBytes(logoimageRef, logoUpload).then((snaphsot) => {
-            getDownloadURL(snaphsot.ref).then((logoLink) => setLogoUrl(logoLink))
-        })
+        let logoUrl = "https://firebasestorage.googleapis.com/v0/b/fyty-tournament.appspot.com/o/Public%2FDefaultPicture%2Fdefault%20pic.png?alt=media&token=7301ec3d-ee0b-4aa8-a6c9-ab194d714275"
+
+        const logoimageRef = ref(storage, `Team/${logoUpload.name + v4()}`);
+
+        const snapshot = await uploadBytes(logoimageRef, logoUpload);
+        logoUrl = await getDownloadURL(snapshot.ref);
+        
+        return logoUrl;
     };
 
     async function onCreateTeamClick(data){
         let payload = {};
-        uploadLogoImage();
-        uploadCoverImage();
+        const logoUrl = await uploadLogoImage();
+        const coverUrl = await uploadCoverImage();
         payload = {...data, coverUrl, logoUrl, gameId: gameSel};
         const createdTeam = await mutateAsyncCreateTeam(payload);
-        console.log(createdTeam);
         props.setCreateTrigle(prev => prev=false);
+        navigate(generatePath(ClientRounteKey.getTeamEach, {id: createdTeam.id}));
     }
 
     const gamesList = games.map((game) =>
@@ -109,7 +119,7 @@ const CreateTeam = (props) => {
                             <input className='logoUpload' type="file" onChange={(event) => logoChange(event)}/>
                         </div>
                         <input className='textInput' type="text" name="teamName" placeholder='Team Name' {...register("teamName", {require: true, minLength:1, maxLength: 32, pattern: /^[A-Za-z0-9]+$/i })}/>
-                        {errors.teamName && <p className='errors' role="alret">Team name is required</p> }
+                        {errors.teamName && <p className='errors'>Team name is required</p> }
                         <div className="errors">{teamError}</div>
 
                         <select name="games" id="game-select" onChange={(event) => gameSelect(event)}>

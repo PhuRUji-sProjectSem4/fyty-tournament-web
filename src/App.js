@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Navbar } from "./components"
 import { Home, Team, Tournament, CreateTournament, MyProfile, MySchedule } from "./pages"
 import "./App.css";
-import coreApi from "./core/axios";
-import { ApiRounteKey, ClientRounteKey } from "./path/coverPath";
 import { getGames } from "./apis/game/game-queries";
-import errorPage from "./pages/ErrorPage";
 import TeamEach from "./pages/TeamEach";
 import { useQuery } from "react-query";
 import TournamentEach from "./pages/TournamentEach";
-import { getUser } from "./apis/user/user-queries";
+import UserEach from "./pages/UserEach";
+import LoadingPage from "./pages/LoadingPage";
+import ErrorPage from "./pages/ErrorPage";
 
 export const GameContext = React.createContext(); 
 export const UserContext = React.createContext();
@@ -29,6 +30,8 @@ const App = () => {
   if(error) return (
     <errorPage/>
   )
+
+  if(isLoading) return ( <LoadingPage/> )
  
   return (
     <UserContext.Provider value={user}>
@@ -36,6 +39,7 @@ const App = () => {
         <BrowserRouter>
             <div>
                 <div><Navbar /></div>
+                <ToastContainer />
                 <div className='webBody'>
                     <Routes>
                         {/* Web */}
@@ -52,6 +56,11 @@ const App = () => {
                         {/* Detail */}
                         <Route path="/team/:id"  element={<TeamEach />} />
                         <Route path="/tournament/:id"  element={<TournamentEach />} />
+                        <Route path="/user/:id"  element={<UserEach />} />
+
+                        {/* error */}
+                        <Route path="/error"  element={<ErrorPage />} />
+                        
 
                     </Routes>
                 </div>

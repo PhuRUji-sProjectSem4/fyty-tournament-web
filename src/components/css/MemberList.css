@@ -1,3 +1,24 @@
+.member-list-wrape{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 auto;
+    padding: 10px 25px;
+    
+
+    border-radius: 12px;
+
+    transition: 0.2s;
+}
+
+.member-list-wrape:hover{
+    background: var(--line-color);
+    cursor: pointer;
+}
+
+
 .member-list-wrape img{
     width: 70px;
     height: 70px;
@@ -7,4 +28,16 @@
 
 .team-owner{
     color: var(--fyty-color);
+    font-size: 1.3em;
+    font-weight: bold;
 }
+
+.username{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.member-role{
+    font-size: 1.2em;
+}
+

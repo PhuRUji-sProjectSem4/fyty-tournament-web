@@ -1,0 +1,77 @@
+.con-outer{
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.con-inner{
+    position: relative;
+    background: var(--componet-color);
+    min-height: 150px;
+    width: 500px;
+    border-radius: 8px;
+}
+
+.message{
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+.acc-del{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    position: absolute;
+    bottom: 30px;
+}
+
+.cancel{
+    color: var(--line-color);
+    border: solid 2px;
+    border-radius: 5px;
+
+    text-align: center;
+    width: 50%;
+
+    margin: 0 auto;
+}
+
+.cancel:hover{
+    cursor: pointer;
+    color: var(--noti-color);
+}
+
+.accept{
+    border-radius: 5px;
+    background: var(--fyty-color);
+
+    text-align: center;
+    width: 50%;
+
+    margin: 0 auto;
+}
+
+.accept:hover{
+    background: var(--hover-color);
+    cursor: pointer;
+}
+
+.loginLoad{
+    background: var(--bg-color);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+

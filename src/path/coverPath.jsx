@@ -73,6 +73,7 @@ export const ClientRounteKey = {
     profile: "/myProfile",
     schedule: "/mySchedule",
 
+
     //game
     getGames: "/game",
     getGameEach: "/game/:id",
@@ -101,6 +102,6 @@ export const ClientRounteKey = {
 
     tournamentEach: "/tournament/:id",
     
-
+    error: "/error",
 
 }

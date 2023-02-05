@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 import { getTeams } from '../apis/team/team-queries'
 import { FliterCard, CreateTeam, TeamCard } from "../components/index"
+import { ClientRounteKey } from '../path/coverPath'
 
 import "./css/Team.css"
 import LoadingPage from './LoadingPage'
 
 const Team = () => {
   const [createTeamPopup, setCreateTeamPopup] = useState(() => false);
+  const [gameSel, setGameSel] = useState("all");
+
+  const navigate = useNavigate();
 
   const {data: teams =[], error, isLoading} = useQuery(
     "teams",
@@ -22,10 +27,10 @@ const Team = () => {
   };
 
   if(error) return (
-    <h1>Boom Api Cashed GG Go Next!!!</h1>
+    navigate(ClientRounteKey.error)
   )
 
-  const teamList = teams.map((team) =>
+  const teamList = teams.filter((team) => gameSel==="all" ? true : team.gameId === gameSel).map((team) =>
     <TeamCard key={team.id} {...team}/>
   );
 
@@ -36,7 +41,7 @@ const Team = () => {
   return (
     <div className='team'>
       <div className="teamHead">Find Your Team</div>
-      <FliterCard/> 
+      <FliterCard onSelect={setGameSel}/> 
       <div className="teamSearchBarWrape">
         <div className="lines">Team Lists</div>
         <div  className='teamSearchBar'>

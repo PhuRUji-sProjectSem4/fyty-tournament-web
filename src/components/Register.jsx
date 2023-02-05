@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 import { registerFyTy } from '../apis/user/register-queries';
 import LoadingPage from '../pages/LoadingPage';
 
@@ -23,14 +24,29 @@ const Register = (props) => {
     }
   );
 
+  const regSuc = () => {
+    toast.success("Register Success", {
+        autoClose : 5000,
+        position : "top-right"
+    })
+  };
+
+  const regFail = () => {
+      toast.error("Register Fail, Username and Email is Duplicate", {
+          autoClose : 5000,
+          position : "top-right"
+      })
+  };
+
   const { isLoading: isRegLoading, mutateAsync: mutateAsyncReg} = useMutation(
     registerFyTy,
     {
       onSuccess(){
-        console.log("reg success");
+        regSuc()
       },
       onError() {
-        setRegError("Username or Email is Duplicate");
+        regFail()
+        setRegError("Username and Email is Duplicate")
       }
     }
   )

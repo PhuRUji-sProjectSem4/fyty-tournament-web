@@ -1,7 +1,9 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 import { getUserSchedule } from '../apis/user/user-queries'
 import MatchCard from '../components/MatchCard'
+import { ClientRounteKey } from '../path/coverPath'
 
 import "./css/Schedule.css"
 import LoadingPage from './LoadingPage'
@@ -13,10 +15,16 @@ const MySchedule = () => {
     getUserSchedule
   )
 
+  const navigate = useNavigate();
+
   const matchList = matchs.map((match) =>
     <MatchCard key={match.id} {...match} />
   );
 
+    if(matchError){
+      return (navigate(ClientRounteKey.error))
+    }
+    
     if(matchLoading){
       return (<LoadingPage/>)
     }

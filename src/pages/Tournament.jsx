@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { getTournament } from '../apis/tournament/tournament-querie';
 import { FliterCard } from '../components';
 import TournamentCard from '../components/TournamentCard';
+import { ClientRounteKey } from '../path/coverPath';
 
 import "./css/Tournament.css"
 import LoadingPage from './LoadingPage';
 
+
 const Tournament = () => {
   const [searchInput, setSearchInput] = useState()
+  const navigate = useNavigate()
   
   const {data: tournaments =[], error, isLoading} = useQuery(
     "tournament",
@@ -23,6 +27,10 @@ const Tournament = () => {
     setSearchInput(event.target.value);
     console.log(searchInput);
   };
+
+  if(error || 1){
+    return ( navigate(ClientRounteKey.error))
+  }
 
   if(isLoading){
     return ( <LoadingPage/> )

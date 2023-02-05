@@ -46,3 +46,21 @@ export function getTeamTourJoined(id){
       .catch(reject)
   })
 }
+
+export function reqJoieTeam(payload){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .post(ApiRounteKey.createRequest, payload)
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
+
+export function getTeamReq(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .get(generatePath(ApiRounteKey.getTeamRequest, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  })
+}
