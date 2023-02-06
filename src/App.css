@@ -161,3 +161,22 @@ input:focus {
     top: 2.75px;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 4px;
+    
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f133;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-color);
+    border-radius: 4px;
+    height: 40px;
+  }
+  

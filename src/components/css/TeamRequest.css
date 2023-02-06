@@ -1,0 +1,125 @@
+.teamReq-outter{
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.teamReq-inner{
+    position: relative;
+    background: var(--componet-color);
+    min-height: 400px;
+    width: 600px;
+    border-radius: 8px;
+
+    
+}
+
+.close{
+    position: absolute;
+    top: 6px;
+    right: 18px;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: 0.2s;
+}
+
+.close:hover{
+    color: var(--noti-color);
+    cursor: pointer;
+}
+
+.over-head{
+    color: var(--line-color);
+    margin: 20px;
+}
+
+.reqHeader{
+    font-size: 1.4em;
+    font-weight: bold;
+
+    margin: 0 20px;
+}
+
+.reqListWrape{
+    margin: 20px;
+    height: 300px;
+    border-radius: 8px;
+
+    background: var(--bg-color);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: scroll;
+}
+
+.reqList{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.reqList:hover{
+    background: var(--componet-color);
+}
+
+.username{
+    font-size: 1.3em;
+}
+
+.username:hover{
+    cursor: pointer;
+    color: var(--fyty-color);
+}
+
+.accTeam{
+    font-weight: bold;
+    font-size: 1.1em;
+    background: var(--fyty-color);
+    height: 30px;
+    width: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+.accTeam:hover{
+    cursor: pointer;
+    background: var(--hover-color);
+}
+
+.decline{
+    font-weight: bold;
+    font-size: 1.1em;
+    height: 30px;
+    width: 80px;
+
+    color: var(--line-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: solid 2px;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+.decline:hover{
+    cursor: pointer;
+    color: var(--noti-color);
+}

@@ -12,6 +12,7 @@ import TournamentList from '../components/TournamentList';
 import ConfrimPopup from '../components/ConfrimPopup';
 import { UserContext } from '../App';
 import { ClientRounteKey } from '../path/coverPath';
+import TeamRequest from '../components/TeamRequest';
 
 
 export const TeamContext = React.createContext();
@@ -24,6 +25,7 @@ const TeamEach = () => {
 
     const [showTour, setShowTour] = useState(true);
     const [confirmShow, setConformShow] = useState(false);
+    const [reqShow, setReqShow] = useState(false);
     
 
     const {data: team = {}, error: teamError, isLoading: teamLoading } = useQuery(
@@ -66,8 +68,11 @@ const TeamEach = () => {
     function showConfirmPopup(){
       setConformShow(prev => prev = true)
     }
-    
-    console.log(reqs)
+
+    function onReqClick(){
+      setReqShow(true)
+      console.log(reqShow)
+    }
     
   if(teamLoading || memberLoading || tourLoading || reqsLoading){
     return ( <LoadingPage/> )
@@ -106,10 +111,12 @@ const TeamEach = () => {
             {/* team request for team owner */}
 
             {user.id === team.ownerId ?
-              <div className="teamReq">
+              <div className="teamReq" onClick={onReqClick}>
                   Team Request
                   { reqs.length === 0 ? <></> : <div className="noti"></div>}
               </div> : <></>}
+
+              { reqShow ? <TeamRequest closeTeamReq={setReqShow} requests = {reqs}/> : <></> }
 
             {/* team detail box tournament / team member */}
             
