@@ -64,3 +64,21 @@ export function getTeamReq(id){
       .catch(reject)
   })
 }
+
+export function acceptRequest(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(generatePath(ApiRounteKey.acceptRequest, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
+
+export function declinedRequest(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(generatePath(ApiRounteKey.declinedRequest, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

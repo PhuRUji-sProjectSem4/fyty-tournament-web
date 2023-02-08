@@ -1,5 +1,8 @@
 import React from 'react'
+import { useMutation } from 'react-query';
 import { generatePath, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { acceptRequest, declinedRequest } from '../apis/team/team-queries';
 import { ClientRounteKey } from '../path/coverPath';
 
 import "./css/TeamRequest.css"
@@ -7,20 +10,75 @@ import "./css/TeamRequest.css"
 const TeamRequest = (props) => {
     const navigate = useNavigate();
 
+    const acceptedReq = () => {
+        toast.success("Accepted Request", {
+            autoClose : 5000,
+            position : "top-right"
+        })
+    };
+
+    const decliendReq = () => {
+        toast.error("Declined Request", {
+            autoClose : 5000,
+            position : "top-right"
+        })
+    };
+
+    const error = () => {
+        toast.error("Something went wrong try refresh the page", {
+            autoClose : 5000,
+            position : "top-right"
+        })
+    };
+
+    const {isLoading: acceptLoading, mutateAsync: mutateAsyncAccept} = useMutation(
+        acceptRequest,
+        {
+            onError(){
+                error()
+                props.closeTeamReq(prev => prev=false);
+            },
+            onSuccess(){
+                acceptedReq()
+                props.reFMem();
+                props.reFReq();
+                props.closeTeamReq(prev => prev=false);
+            }
+        }
+    )
+
+    const {isLoading: declineLoading, mutateAsync: mutateAsyncDecline} = useMutation(
+        declinedRequest,
+        {
+            onError(){
+                error()
+                props.closeTeamReq(prev => prev=false);
+            },
+            onSuccess(){
+                decliendReq()
+                props.reFMem();
+                props.reFReq();
+                props.closeTeamReq(prev => prev=false);
+            }
+        }
+    )
+
     function onCloseClick(){
         props.closeTeamReq(prev => prev=false);
     }
 
     function userClick(userId){
-        navigate(generatePath(ClientRounteKey.getUserEach, {id: userId} ));
+       return () => navigate(generatePath(ClientRounteKey.getUserEach, {id: userId} ));
     }
 
-    function accTeam(){
-        console.log("accTeam")
+    function accTeam(reqId){
+        
+        return () => mutateAsyncAccept(reqId)
     }
 
-    function delTeam(){
-        console.log("delteam")
+    function delTeam(reqId){
+        
+        return () => mutateAsyncDecline(reqId)
     }
     
     
@@ -29,10 +87,10 @@ const TeamRequest = (props) => {
             <div className="username" onClick={userClick(req.userData.id)}>
                 {req.userData.username}
             </div>
-            <div className="accTeam" onClick={accTeam}>
+            <div className="accTeam" onClick={accTeam(req.id)}>
                 Accept
             </div>
-            <div className="decline" onClick={delTeam}>
+            <div className="decline" onClick={delTeam(req.id)}>
                 Decline
             </div>
         </div>

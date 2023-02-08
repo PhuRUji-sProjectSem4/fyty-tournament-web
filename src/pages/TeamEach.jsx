@@ -33,7 +33,7 @@ const TeamEach = () => {
       () => getTeamEach(id)
     );
 
-    const {data: members = [], error: memberError, isLoading: memberLoading } = useQuery(
+    const {data: members = [], error: memberError, isLoading: memberLoading, refetch:reMem } = useQuery(
       "members",
       () => getTeamMember(id)
     );
@@ -43,7 +43,7 @@ const TeamEach = () => {
       () => getTeamTourJoined(id)
     );
 
-    const {data: reqs = [], error: reqsError, isLoading: reqsLoading } = useQuery(
+    const {data: reqs = [], error: reqsError, isLoading: reqsLoading, refetch: reReq } = useQuery(
       "teamReq",
       () => getTeamReq(id)
     );
@@ -116,7 +116,7 @@ const TeamEach = () => {
                   { reqs.length === 0 ? <></> : <div className="noti"></div>}
               </div> : <></>}
 
-              { reqShow ? <TeamRequest closeTeamReq={setReqShow} requests = {reqs}/> : <></> }
+              { reqShow ? <TeamRequest closeTeamReq={setReqShow} requests = {reqs} reFMem={reMem} reFReq={reReq}/> : <></> }
 
             {/* team detail box tournament / team member */}
             
