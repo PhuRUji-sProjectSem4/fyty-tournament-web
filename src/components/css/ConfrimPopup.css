@@ -75,3 +75,21 @@
     left: 0;
 }
 
+.teamNameCon{
+    color: var(--fyty-color);
+}
+
+.accept-leave{
+    background: var(--noti-color);
+    border-radius: 5px;
+
+    text-align: center;
+    width: 50%;
+
+    margin: 0 auto;
+}
+
+.accept-leave:hover{
+    background: rgb(235, 97, 97);
+    cursor: pointer;
+}

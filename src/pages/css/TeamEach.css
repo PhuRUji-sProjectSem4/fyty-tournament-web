@@ -194,3 +194,24 @@
     width: 15px;
     border-radius: 50%;
 }
+
+
+.leaveTeam{
+    position: absolute;
+    top: 140px;
+    right: 20px;
+
+    color: var(--line-color);
+    border: solid 2px;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+
+    font-size: 1.2em;
+}
+
+.leaveTeam:hover{
+    cursor: pointer;
+    background: var(--noti-color);
+    color: #fff;
+}

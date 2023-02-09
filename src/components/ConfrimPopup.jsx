@@ -53,7 +53,7 @@ const ConfrimPopup = (props) => {
             
                 <div className="con-inner">
                     <div className="message">
-                        {props.message}
+                         Do you want to join <span className='teamNameCon'>{props.message}</span> team ?
                     </div>
                     <div className="acc-del">
                         <div className="cancel" onClick={cancel}>

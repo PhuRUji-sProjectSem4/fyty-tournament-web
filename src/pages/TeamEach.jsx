@@ -1,4 +1,4 @@
-import React, { Children, Component, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom'
 import { getTeamEach, getTeamMember, getTeamReq, getTeamTourJoined } from '../apis/team/team-queries';
@@ -13,6 +13,7 @@ import ConfrimPopup from '../components/ConfrimPopup';
 import { UserContext } from '../App';
 import { ClientRounteKey } from '../path/coverPath';
 import TeamRequest from '../components/TeamRequest';
+import LeaveConfirm from '../components/LeaveConfirm';
 
 
 export const TeamContext = React.createContext();
@@ -26,6 +27,7 @@ const TeamEach = () => {
     const [showTour, setShowTour] = useState(true);
     const [confirmShow, setConformShow] = useState(false);
     const [reqShow, setReqShow] = useState(false);
+    const [leaveConShow, setLeaveConShow] = useState(false);
     
 
     const {data: team = {}, error: teamError, isLoading: teamLoading } = useQuery(
@@ -69,10 +71,22 @@ const TeamEach = () => {
       setConformShow(prev => prev = true)
     }
 
+    function showLeaveTeamPopup(){
+      setLeaveConShow(prev => prev = true)
+    }
+
     function onReqClick(){
       setReqShow(true)
-      console.log(reqShow)
     }
+
+    const isFound = members.some(element => {
+      if (element.userData.id === user.id) {
+        return true;
+      }
+
+      return false;
+    });
+
     
   if(teamLoading || memberLoading || tourLoading || reqsLoading){
     return ( <LoadingPage/> )
@@ -105,9 +119,15 @@ const TeamEach = () => {
 
             {/* for  who want to join team  */}
 
-            {user.id !== team.ownerId ? <div className="joinTeam" onClick={showConfirmPopup} >joinTeam</div> : "" }
-            {confirmShow ? <ConfrimPopup message = {"Do you want to join " + team.teamName + " team?"} popStatus={setConformShow} /> : ""}
+            {user.id !== team.ownerId && !isFound ? <div className="joinTeam" onClick={showConfirmPopup} >joinTeam</div> : "" }
+            {confirmShow ? <ConfrimPopup message = {team.teamName} popStatus={setConformShow} /> : ""}
             
+
+            {/* for leave team btn */}
+
+            {isFound && user.id !== team.ownerId ? <div className='leaveTeam' onClick={showLeaveTeamPopup}>Leave</div> : ""}
+            {leaveConShow ? <LeaveConfirm message = {team.teamName} popStatus={setLeaveConShow}/> : <></> }
+
             {/* team request for team owner */}
 
             {user.id === team.ownerId ?

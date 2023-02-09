@@ -82,3 +82,12 @@ export function declinedRequest(id){
       .catch(reject)
   });
 }
+
+export function leaveTeam(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(generatePath(ApiRounteKey.leave, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
