@@ -11,7 +11,7 @@ const NavPopup = (prop) => {
     const [user, setUser] = useContext(UserContext);
 
     function profile(){
-        navigate(generatePath(ClientRounteKey.profile))
+        navigate(generatePath(ClientRounteKey.getUserEach, {id: user.id}))
         prop.toggleNavPopup(prev => prev=false)
     }
 

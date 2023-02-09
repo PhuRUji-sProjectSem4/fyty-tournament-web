@@ -33,6 +33,7 @@ const ConfrimPopup = (props) => {
             },
             onSuccess(){
                 reqSuc()
+                props.reFReq()
             }
         }
     )

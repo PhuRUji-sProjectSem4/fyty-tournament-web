@@ -23,7 +23,6 @@ const Team = () => {
 
   function handleSearchChange(event){
     searchInput = event.target.value;
-    console.log(searchInput);
   };
 
   if(error) return (

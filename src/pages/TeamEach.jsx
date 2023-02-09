@@ -87,6 +87,14 @@ const TeamEach = () => {
       return false;
     });
 
+    const reqIsFound = reqs.some(req =>{
+      if(req.userData.id === user.id){
+        return true;
+      }
+
+      return false;
+    });
+
     
   if(teamLoading || memberLoading || tourLoading || reqsLoading){
     return ( <LoadingPage/> )
@@ -119,9 +127,11 @@ const TeamEach = () => {
 
             {/* for  who want to join team  */}
 
-            {user.id !== team.ownerId && !isFound ? <div className="joinTeam" onClick={showConfirmPopup} >joinTeam</div> : "" }
-            {confirmShow ? <ConfrimPopup message = {team.teamName} popStatus={setConformShow} /> : ""}
+            {user.id !== team.ownerId && !isFound && !reqIsFound ? <div className="joinTeam" onClick={showConfirmPopup} >joinTeam</div> : "" }
+            {confirmShow ? <ConfrimPopup message = {team.teamName} popStatus={setConformShow} reFReq={reReq} /> : ""}
             
+            {/* requested already */}
+            {reqIsFound ? <div className='req-sent'>Request sent</div> : <></>}
 
             {/* for leave team btn */}
 

@@ -215,3 +215,16 @@
     background: var(--noti-color);
     color: #fff;
 }
+
+.req-sent{
+    position: absolute;
+    top: 140px;
+    right: 20px;
+
+    color: var(--line-color);
+    border: solid 2px;
+    border-radius: 4px;
+    padding: 8px;
+    text-align: center;
+    font-size: 1.2em;
+}

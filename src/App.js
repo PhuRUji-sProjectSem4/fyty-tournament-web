@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Navbar } from "./components"
-import { Home, Team, Tournament, CreateTournament, MyProfile, MySchedule } from "./pages"
+import { Home, Team, Tournament, CreateTournament, MySchedule } from "./pages"
 import "./App.css";
 import { getGames } from "./apis/game/game-queries";
 import TeamEach from "./pages/TeamEach";
@@ -50,7 +50,6 @@ const App = () => {
                         <Route path="/createTournament" element={<CreateTournament />} />
                         
                         {/* User Management */}
-                        <Route path="/myProfile" element={<MyProfile />} />
                         <Route path="/mySchedule" element={<MySchedule />} />
 
                         {/* Detail */}

@@ -37,7 +37,8 @@
 
 .over-head{
     color: var(--line-color);
-    margin: 20px;
+    font-weight: bold;
+    margin: 10px 20px ;
 }
 
 .reqHeader{

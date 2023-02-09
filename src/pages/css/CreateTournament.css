@@ -1,0 +1,41 @@
+.createTourPage{
+    position: relative;
+    padding: 1em 3.5em;
+    z-index: 100;
+}
+
+.createTourHead{
+    color: var(--line-color);
+    font-weight: bold;
+}
+
+.tournamentCardWrape{
+    width: 100%;
+    min-height: 300px;
+    background: var(--componet-color);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.createTourBtn{
+    position: absolute;
+    top: 80px;
+    right: 60px;
+
+    padding: 5px 10px;
+    background: var(--fyty-color);
+    border-radius: 4px;
+}
+
+.createTourBtn:hover{
+    background: var(--hover-color);
+    cursor: pointer;
+}
+
+.endedWrape{
+    margin-top: 60px;
+}

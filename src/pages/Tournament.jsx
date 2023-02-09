@@ -12,14 +12,15 @@ import LoadingPage from './LoadingPage';
 
 const Tournament = () => {
   const [searchInput, setSearchInput] = useState()
+  const [gameSel, setGameSel] = useState("all");
   const navigate = useNavigate()
   
   const {data: tournaments =[], error, isLoading} = useQuery(
     "tournament",
     getTournament
   )
-  console.log(tournaments);
-  const tournamentList = tournaments.map((tour) =>
+  
+  const tournamentList = tournaments.filter((tour) => gameSel==="all" ? true : tour.gameId === gameSel).map((tour) =>
     <TournamentCard key={tour.id} {...tour}/>
   );
 
@@ -39,7 +40,7 @@ const Tournament = () => {
   return (
     <div className='tournament'>
       <div className="tournamentHead">Find Your Tournament</div>
-      <FliterCard/>
+      <FliterCard onSelect={setGameSel}/>
       <div className="teamSearchBarWrape">
         <div className="lines">Tournament Lists</div>
         <div  className='teamSearchBar'>

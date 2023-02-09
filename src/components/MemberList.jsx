@@ -23,7 +23,7 @@ const MemberList = (props) => {
       <img src={props.userData.protraitUrl} alt="" />
       <div className={team.ownerId === props.userData.id ? "team-owner" :'username'}>{props.userData.username}</div>
       <div className="member-role">{props.role}</div>
-      {user[0].id === team.ownerId ? <div className="configteam">x</div> : ""}
+      {/* {user[0].id === team.ownerId ? <div className="configteam">x</div> : ""} */}
     </div>
   )
 }
