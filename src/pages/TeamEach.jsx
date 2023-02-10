@@ -167,6 +167,7 @@ const TeamEach = () => {
                   </div>
               }
             </div>
+            
           </div>
 
       </div>

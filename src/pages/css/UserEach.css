@@ -1,0 +1,57 @@
+.userEachPage{
+    padding: 1em 3.5em;
+    position: relative;
+}
+
+.userHead{
+    color: var(--line-color);
+    font-weight: bold;
+}
+
+.cover{
+    position: absolute;
+    top: 0px;
+    left: 0;
+
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+
+    z-index: -10;
+}
+
+
+.userContent{
+    position: relative;
+    margin-top: 200px;
+}
+
+
+.userLogo{
+    display: grid;
+    grid-template-columns: 160px 350px;
+    
+    width: 440px;
+    
+    column-gap: 20px;
+}
+
+.userLogo img{
+    width: 160px;
+    height: 160px;
+
+    border-radius: 10px;
+}
+
+.name-des-user{
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    margin-top: 60px;
+}
+
+.name-des-user h1{
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+

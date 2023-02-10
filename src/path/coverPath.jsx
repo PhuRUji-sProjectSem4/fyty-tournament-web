@@ -24,7 +24,9 @@ export const ApiRounteKey = {
     register: "/user/register",
     updateProfile: "/user/me", 
     getUserSchedule: "/user/schedule/me", 
-    getUserHistory: "/user/history/me", 
+    getUserHistory: "/user/:id/history", 
+    getUserTournament: "/user/tournamet/me", 
+    getUserTeam: "/user/:id/team", 
 
     //team
     getTeams: "/team",
