@@ -1,0 +1,49 @@
+.createTourOuter{
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.createTourInner{
+    position: relative;
+    background: var(--componet-color);
+    z-index: 9999;
+    min-height:550px;
+    width: 400px;
+    border-radius: 8px;
+    
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createTourInner form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.closeCreateTourBtn{
+    position: absolute;
+    font-size: 1.2em;
+    font-weight: bold;
+    top: 5px;
+    right: 15px;
+}
+
+.closeCreateTourBtn:hover{
+    color: var(--noti-color);
+    cursor: pointer;
+}
+
+.uploadWrape label{
+    color: var(--line-color);
+}

@@ -24,6 +24,7 @@
     position: absolute;
     top: 80px;
     right: 60px;
+    z-index: 0;
 
     padding: 5px 10px;
     background: var(--fyty-color);
