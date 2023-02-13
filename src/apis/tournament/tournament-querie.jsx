@@ -9,3 +9,13 @@ export function getTournament(){
         .catch(reject)
     });
 }
+
+export function createTournament(payload){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .post(ApiRounteKey.createTournament, payload)
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
+
