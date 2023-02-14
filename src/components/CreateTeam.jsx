@@ -64,9 +64,10 @@ const CreateTeam = (props) => {
     }
 
     async function uploadCoverImage() {
-        if(coverUpload == null) return;  
-
         let coverUrl = "";
+
+        if(coverUpload == null) return "";  
+
 
         const coverimageRef = ref(storage, `Team/${coverUpload.name + v4()}`)
 
@@ -77,9 +78,9 @@ const CreateTeam = (props) => {
     };
 
     async function uploadLogoImage() {
-        if(logoUpload == null) return;  
-
+        
         let logoUrl = "https://firebasestorage.googleapis.com/v0/b/fyty-tournament.appspot.com/o/Public%2FDefaultPicture%2Fdefault%20pic.png?alt=media&token=7301ec3d-ee0b-4aa8-a6c9-ab194d714275"
+        if(logoUpload == null) return logoUrl;  
 
         const logoimageRef = ref(storage, `Team/${logoUpload.name + v4()}`);
 

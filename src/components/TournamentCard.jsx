@@ -22,8 +22,8 @@ const TournamentCard = (props) => {
             <div className="currentJoined"> {props.currentJoin} <span className='joined'> / {props.tourCap} </span>Teams</div>
             <div className="tourdetail">
                 <div className="tourName">{props.tourName}</div>
-                <div className="reg-label">Register {props.status === "REGISTER" ? "" : "(Started)"}</div>
-                <div className= {props.status === "REGISTER" ? "register-time-open" : "register-time-close"}>{regStart} - {regEnd}</div>
+                <div className="reg-label">Register {props.status === "REGISTER" || props.status === "CHECKING" ? "" : "(Close)"}</div>
+                <div className= {props.status === "REGISTER" || props.status === "CHECKING" ? "register-time-open" : "register-time-close"}>{regStart} to {regEnd}</div>
             </div>
         </div>
     </div>

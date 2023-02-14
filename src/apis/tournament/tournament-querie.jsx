@@ -1,3 +1,4 @@
+import { generatePath } from "react-router-dom";
 import coreApi from "../../core/axios";
 import { ApiRounteKey } from "../../path/coverPath";
 
@@ -19,3 +20,21 @@ export function createTournament(payload){
   });
 }
 
+export function getTournamentEach(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .get(generatePath(ApiRounteKey.getTournamentEach, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
+
+
+export function getTournamentJoined(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .get(generatePath(ApiRounteKey.getTournamentJoined, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

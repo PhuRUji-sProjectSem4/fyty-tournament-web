@@ -10,11 +10,14 @@ import { v4 } from 'uuid'
 import { useMutation } from 'react-query'
 import { createTournament } from '../apis/tournament/tournament-querie'
 import LoadingPage from '../pages/LoadingPage'
+import { generatePath, useNavigate } from 'react-router-dom'
+import { ClientRounteKey } from '../path/coverPath'
 
 
 const CreateTournamentPopup = (props) => {
     const user = useContext(UserContext);
     const games = useContext(GameContext);
+    const navigate = useNavigate();
     const [coverUpload, setCoverUpload] = useState(null);
 
     const{
@@ -31,7 +34,7 @@ const CreateTournamentPopup = (props) => {
                 regEndTime: "",
                 tourStartTime: "",
                 tourEndTime: "",
-                owenerId: user[0].id
+                ownerId: user[0].id
             }
         }
     )
@@ -57,9 +60,9 @@ const CreateTournamentPopup = (props) => {
     }
 
     async function uploadCoverImage() {
-        if(coverUpload == null) return;  
-
         let coverUrl = "";
+
+        if(coverUpload == null) return coverUrl;  
 
         const coverimageRef = ref(storage, `Tournament/${coverUpload.name + v4()}`)
 
@@ -71,9 +74,12 @@ const CreateTournamentPopup = (props) => {
 
     async function sentForm(data){
         const coverUrl = await uploadCoverImage();
-        data.prize = Number(data.prize);
+        data.prize = Number(data.prize)
         data = {...data, coverUrl}
         console.log(data);
+        const createTournament = await mutateAsynceCreateTournament(data);
+        props.setPopup(prev => prev = false)
+        navigate(generatePath(ClientRounteKey.tournamentEach, {id: createTournament.id}))
     }
 
     const gamesList = games.map((game) =>
