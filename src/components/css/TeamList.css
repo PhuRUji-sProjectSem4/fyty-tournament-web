@@ -1,0 +1,27 @@
+.teamListWrape{
+    width: 88%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 auto;
+    padding: 10px 25px;
+}
+
+.teamListWrape:hover{
+    background: var(--line-color);
+    cursor: pointer;
+
+    border-radius: 4px;
+}
+
+.teamListWrape img{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.teamListWrape .teamName{
+    font-size: 1em;
+}
