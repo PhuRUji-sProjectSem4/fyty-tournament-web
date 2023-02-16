@@ -38,3 +38,12 @@ export function getTournamentJoined(id){
       .catch(reject)
   });
 }
+
+export function getTournamentMatch(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .get(generatePath(ApiRounteKey.getTournamentMatch, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

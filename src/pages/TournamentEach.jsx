@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom'
-import { getTournamentEach, getTournamentJoined } from '../apis/tournament/tournament-querie';
+import { getTournamentEach, getTournamentJoined, getTournamentMatch } from '../apis/tournament/tournament-querie';
 import LoadingPage from './LoadingPage'
 import ErrorPage from './ErrorPage'
 import { UserContext } from '../App';
 
 import "./css/TournamentEach.css"
 import TeamList from '../components/TeamList';
+import MatchContrianer from '../components/MatchContrianer';
 
 const TournamentEach = () => {
     const { id } = useParams();
@@ -24,6 +25,11 @@ const TournamentEach = () => {
     const { data: joinsDetail = [], isError: isjoinError, isLoading:isjoinLoading } = useQuery(
       "tourJoined",
       () => getTournamentJoined(id)
+    )
+
+    const { data: matches = [], isError: isGetMatchError, isLoading: isGetMatchLoading } = useQuery(
+      "matches",
+      () => getTournamentMatch(id)
     )
 
     function onRuleClick(){
@@ -127,7 +133,7 @@ const TournamentEach = () => {
         <div className="tourDetail">
           {/* content */}
           {ruleSel ? <div className='ruleContrainer' >{TournamentDetail.rule}</div> : <></>}
-          {matchSel ? <div className='matchContrainer' >m</div> : <></>}
+          {matchSel ? <div className='matchContrainer' ><MatchContrianer tourMatch={matches}/></div> : <></>}
           {joinSel ? <div className='teamJoinContrainer' >{teamJoinList}</div> : <></>}
         </div>
 
