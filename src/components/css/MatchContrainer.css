@@ -1,8 +1,80 @@
-.matchList{
+
+.matchRow{
     display: flex;
+    flex-direction: column;
+
+    margin: 10px 0;
+}
+
+.matchRow .matchList:nth-child(even){
+    background: var(--bg-color);
+}
+
+.matchRow .matchList:nth-child(odd) .score{
+    background: var(--bg-color);
+}
+
+.matchList{
+    width: 80%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border: solid 1px var(--bg-color);
+
+    margin: 0 auto;
 }
 
 .Bracket{
     font-size: 1.4em;
     font-weight: bold;
 }
+
+.pair{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.matchDetail{
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.matchDetail .teamAndScore .teamName{
+    width: 150px;
+    overflow: hidden;
+    margin: 0 auto;
+    font-size: 1em;
+}
+
+.matchDetail .teamName:hover{
+    cursor: pointer;
+    text-shadow: 
+    0 0 4px rgb(10, 253, 221);
+}
+
+.teamAndScore{
+    display: flex;
+}
+
+.score{
+    min-height: 30px;
+    min-width: 50px;
+    background: var(--componet-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 10px;
+}
+
+.playTime{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+
