@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom'
-import { getTournamentEach, getTournamentJoined, getTournamentMatch } from '../apis/tournament/tournament-querie';
+import { getTournamentEach, getTournamentJoined, getTournamentMatch, updateTournamentRule } from '../apis/tournament/tournament-querie';
 import LoadingPage from './LoadingPage'
 import ErrorPage from './ErrorPage'
 import { UserContext } from '../App';
@@ -16,8 +16,10 @@ const TournamentEach = () => {
     const [ruleSel, setRuleSel] = useState(true);
     const [matchSel, setMatchSel] = useState(false);
     const [joinSel, setJoinSel] = useState(false);
+    const [showInputRule, setShowInputRule] = useState(false);
+    
 
-    const { data: TournamentDetail = [], isError: isTourError, isLoading:isTourLoading } = useQuery(
+    const { data: TournamentDetail = [], isError: isTourError, isLoading:isTourLoading, refetch: tourDetailRefetch } = useQuery(
       "tourDetail",
       () => getTournamentEach(id)
     )
@@ -31,6 +33,22 @@ const TournamentEach = () => {
       "matches",
       () => getTournamentMatch(id)
     )
+
+    const { isLoading: isUpdateRuleLoading, mutateAsync: mutateAsyncUpdateRule } = useMutation(
+      updateTournamentRule,
+      {
+        onError(){
+
+        },
+        onSuccess(){
+          tourDetailRefetch();
+          
+        }
+      }
+    );
+
+
+    const [rule, setRule] = useState(TournamentDetail?.rule);
 
     function onRuleClick(){
       setRuleSel(prev => prev = true);
@@ -50,12 +68,32 @@ const TournamentEach = () => {
       setJoinSel(prev => prev = true);
     }
 
+    function ruleChange(event){
+      setRule(event.target.value)
+    }
+
+    async function confirmRule(){
+      if(rule === TournamentDetail.rule) {
+        setShowInputRule(false);
+        return
+      };
+
+      await mutateAsyncUpdateRule({id, payload: rule });
+
+      setShowInputRule(false);
+    }
+
+    async function cancelRule(){
+      setRule(TournamentDetail.rule)
+      setShowInputRule(false)
+    }
+
     const showJoinTour = (user.id !== TournamentDetail.ownerId && TournamentDetail.status === "REGISTER");
     
     //Tour is started
-    const tourStart = TournamentDetail.status === "STARTED";
+    const tourStart = (TournamentDetail.status === "STARTED" && user.id !== TournamentDetail.ownerId);
     //Tour is ended
-    const tourEnd = (TournamentDetail.status === "ENDED");
+    const tourEnd = (TournamentDetail.status === "ENDED" && user.id !== TournamentDetail.ownerId );
     
     // for confirm detail and start register
     const showConfirmTour = (user.id === TournamentDetail.ownerId && TournamentDetail.status === "CHECKING"); 
@@ -70,8 +108,8 @@ const TournamentEach = () => {
 
     
 
-    if(isTourLoading || isjoinLoading) return (<LoadingPage/>)
-    if(isTourError || isjoinError) return (<ErrorPage/>)
+    if(isTourLoading || isjoinLoading || isGetMatchLoading || isUpdateRuleLoading) return (<LoadingPage/>)
+    if(isTourError || isjoinError || isGetMatchError) return (<ErrorPage/>)
   return (
     <div className="tourEachPage">
       <div className="tourEachHead">
@@ -132,14 +170,39 @@ const TournamentEach = () => {
 
         <div className="tourDetail">
           {/* content */}
-          {ruleSel ? <div className='ruleContrainer' >{TournamentDetail.rule}</div> : <></>}
+          {ruleSel ? 
+            <div className='ruleContrainer' >
+              {showInputRule ? 
+                <div className="ruleInput">
+                  <textarea name="rule" id="rule" cols="150" rows="50" onChange={(event) => ruleChange(event)}>{TournamentDetail.rule}</textarea>
+                  <div className="ruleBtn">
+                    <div className="confirmRuleBtn" onClick={confirmRule}>Confirm</div>
+                    <div className="cancelRuleBtn" onClick={cancelRule}>Cancel</div>
+                  </div>
+                </div> 
+
+                : 
+                
+                <div className='ruleString'>
+                  <div className="settingFlex">
+                    <div className="settingRuleBtn" onClick={() => setShowInputRule(true)}>Setting</div>
+                  </div>
+                  {TournamentDetail.rule }
+                </div>
+              }
+            </div> 
+
+            : <></>
+          }
+          
           {matchSel ? <div className='matchContrainer' ><MatchContrianer tourMatch={matches}/></div> : <></>}
+          
           {joinSel ? <div className='teamJoinContrainer' >{teamJoinList}</div> : <></>}
         </div>
 
       </div>
 
-
+      
 
     </div>
   )

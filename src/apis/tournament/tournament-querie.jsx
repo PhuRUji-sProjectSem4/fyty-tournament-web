@@ -47,3 +47,13 @@ export function getTournamentMatch(id){
       .catch(reject)
   });
 }
+
+export function updateTournamentRule({id, payload}){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(generatePath(ApiRounteKey.updateTournament, {id}), {rule: payload})
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
+

@@ -22,6 +22,7 @@
     align-items: center;
     padding: 0 20px;
     border: solid 1px var(--bg-color);
+    border-radius: 8px;
 
     margin: 0 auto;
 }
@@ -64,6 +65,7 @@
 .score{
     min-height: 30px;
     min-width: 50px;
+    border-radius: 4px;
     background: var(--componet-color);
     display: flex;
     justify-content: center;
@@ -77,4 +79,101 @@
     font-size: 1.2em;
 }
 
+.upComing{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 auto;
 
+    width: 80%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    border: solid 1px var(--bg-color);
+    border-radius: 8px;
+
+    background: var(--bg-color);
+}
+
+.ruleString{
+    font-size: 1.2em;
+    white-space: pre-line;
+}
+
+.settingFlex{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+}
+
+.settingRuleBtn{
+    background: var(--fyty-color);
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 1.0em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settingRuleBtn:hover{
+    background: var(--hover-color);
+    cursor: pointer;
+}
+
+.ruleBtn{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.confirmRuleBtn{
+    background: var(--fyty-color);
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmRuleBtn:hover{
+    background: var(--hover-color);
+    cursor: pointer;
+}
+
+.cancelRuleBtn{
+    color: var(--line-color);
+    width: 94px;
+    height: 24px;
+    border: solid 3px;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancelRuleBtn:hover{
+    color: var(--noti-color);
+    cursor: pointer;
+}
+
+.ruleInput textarea{
+    background: var(--bg-color);
+    border: none;
+    border-radius:  8px;
+    
+    font-size: 1.2em;
+    color: #fff;
+
+    min-height: 100px;
+    width: 100%;
+}
