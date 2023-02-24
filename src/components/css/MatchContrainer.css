@@ -1,4 +1,6 @@
-
+.matchWrape{
+    position: relative;
+}
 .matchRow{
     display: flex;
     flex-direction: column;
@@ -40,19 +42,36 @@
 .matchDetail{
     font-size: 1.2em;
     font-weight: bold;
+    width: 510px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.matchDetail .teamAndScore .homeTeamName{
+    width: 180px;
+    overflow: hidden;
+    font-size: 1em;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
-.matchDetail .teamAndScore .teamName{
-    width: 150px;
+.matchDetail .teamAndScore .awayTeamName{
+    width: 180px;
     overflow: hidden;
-    margin: 0 auto;
     font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.matchDetail .teamName:hover{
+.matchDetail .homeTeamName:hover{
+    cursor: pointer;
+    text-shadow: 
+    0 0 4px rgb(10, 253, 221);
+}
+
+.matchDetail .awayTeamName:hover{
     cursor: pointer;
     text-shadow: 
     0 0 4px rgb(10, 253, 221);
@@ -96,84 +115,48 @@
     background: var(--bg-color);
 }
 
-.ruleString{
-    font-size: 1.2em;
-    white-space: pre-line;
-}
-
-.settingFlex{
+.vs{
     display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
-.settingRuleBtn{
-    background: var(--fyty-color);
-    width: 100px;
-    height: 30px;
-    border-radius: 4px;
-    font-size: 1.0em;
-    font-weight: bold;
+.editScoreBtn img{
+    width: 28px;
+    height: 28px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: 0.2s;
 }
 
-.settingRuleBtn:hover{
-    background: var(--hover-color);
+.editScoreBtn img:hover{
     cursor: pointer;
+    width: 32px;
+    height: 32px;
 }
 
-.ruleBtn{
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-end;
-    gap: 10px;
+.round{
+    position: relative;
 }
 
-.confirmRuleBtn{
-    background: var(--fyty-color);
-    width: 100px;
-    height: 30px;
-    border-radius: 4px;
-    font-size: 1.2em;
+.addMatch{
+    position: absolute;
+    right: 110px;
+    top: 10px;
+    font-size: 1em;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.confirmRuleBtn:hover{
-    background: var(--hover-color);
-    cursor: pointer;
-}
-
-.cancelRuleBtn{
-    color: var(--line-color);
-    width: 94px;
-    height: 24px;
-    border: solid 3px;
-    border-radius: 4px;
-    font-size: 1.2em;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cancelRuleBtn:hover{
-    color: var(--noti-color);
-    cursor: pointer;
-}
-
-.ruleInput textarea{
-    background: var(--bg-color);
-    border: none;
-    border-radius:  8px;
-    
-    font-size: 1.2em;
     color: #fff;
+    background: var(--fyty-color);
+    border-radius: 4px;
+    padding: 3px 5px;
 
-    min-height: 100px;
-    width: 100%;
+    transition: 0.2s;
+}
+
+.addMatch:hover{
+    background: var(--hover-color);
+    cursor: pointer;
 }

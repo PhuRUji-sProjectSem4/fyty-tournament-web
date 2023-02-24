@@ -58,9 +58,9 @@ export const ApiRounteKey = {
     getTournamentEach: "/tournament/:id",
     createTournament: "/tournament",
     updateTournament: "/tournament/:id/detail",
-    registerTournament: "/tournament/:id/register",
-    startTournament: "/tournament/:id/start",
-    endTournament: "/tournament/:id/end",
+    registerTournament: "/tournament/:id/status/register",
+    startTournament: "/tournament/:id/status/start",
+    endTournament: "/tournament/:id/status/end",
     deleteTournament: "/tournament/:id",
 
     joinTournament: "/tournament/join",

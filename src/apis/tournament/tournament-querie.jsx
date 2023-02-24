@@ -57,3 +57,30 @@ export function updateTournamentRule({id, payload}){
   });
 }
 
+export function registerTournament(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(generatePath(ApiRounteKey.registerTournament, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
+
+export function startTournament(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(generatePath(ApiRounteKey.startTournament, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
+
+export function endTournament(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(generatePath(ApiRounteKey.endTournament, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
+

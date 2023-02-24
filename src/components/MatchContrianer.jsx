@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { generatePath, useNavigate } from 'react-router-dom';
 import "./css/MatchContrainer.css"
 import { ClientRounteKey } from '../path/coverPath'
+import { UserContext } from '../App';
+import AddMatchPopup from './AddMatchPopup';
 
 
 const MatchContrianer = (props) => {
     const navigate = useNavigate();
+    const [user, setUser] = useContext(UserContext);
+    const [showAddPopup, setShowPopup] = useState(false);
 
     function onTeamClick(id){
       return () => navigate(generatePath(ClientRounteKey.getTeamEach, {id}))
@@ -21,25 +25,31 @@ const MatchContrianer = (props) => {
 
               <div className="matchDetail">
                   <div className="teamAndScore">
-                    <div className="teamName" onClick={onTeamClick(match.homeTeamData.id)}>{match.homeTeamData.teamName}</div> 
+                    <div className="homeTeamName" onClick={onTeamClick(match.homeTeamData.id)}>{match.homeTeamData.teamName}</div> 
                     <div className="score"> {match.matchResult === "" ? "" : match.matchResult.teamHomeScore} </div> 
                   </div>
                   <div className="vs">vs</div>
                   <div className="teamAndScore">
                     <div className="score"> {match.matchResult === "" ? "" : match.matchResult.teamAwayScore} </div>  
-                    <div className="teamName" onClick={onTeamClick(match.awayTeamData.id)}>{match.awayTeamData.teamName}</div>
+                    <div className="awayTeamName" onClick={onTeamClick(match.awayTeamData.id)}>{match.awayTeamData.teamName}</div>
                   </div>
               </div>
               
               <div className="playTime"> Date: {(match.date).slice(0,10)}  Time: {(match.date).slice(11,16)}</div>
-          
+              {user.id === props.tournamentDetail.ownerId ? <div className='editScoreBtn'><img src="/asset/edit.png" alt="edit" /></div> : <></>}
           </div>)
   };
 
   return (
     <div className="matchWrape">
+
+        {user.id === props.tournamentDetail.ownerId && props.tournamentDetail.status !== "ENDED" && props.tournamentDetail.status === "STARTED" ? <div className="addMatch">+ Match</div> : <></>}
+        {showAddPopup ? <AddMatchPopup/> : <></> }
+        
         <div className="Bracket">Upper Bracket</div>
-        <div className="round">Round 1</div>
+        <div className="round">
+          Round 1
+        </div>
         <div className="matchRow">
           {matchShow("1", "UPPER") == "" ? <div className='upComing'>Up Coming</div> : matchShow("1", "UPPER")}
         </div>

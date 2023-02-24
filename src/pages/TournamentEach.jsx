@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom'
-import { getTournamentEach, getTournamentJoined, getTournamentMatch, updateTournamentRule } from '../apis/tournament/tournament-querie';
+import { endTournament, getTournamentEach, getTournamentJoined, getTournamentMatch, registerTournament, startTournament, updateTournamentRule } from '../apis/tournament/tournament-querie';
 import LoadingPage from './LoadingPage'
 import ErrorPage from './ErrorPage'
 import { UserContext } from '../App';
@@ -9,6 +9,10 @@ import { UserContext } from '../App';
 import "./css/TournamentEach.css"
 import TeamList from '../components/TeamList';
 import MatchContrianer from '../components/MatchContrianer';
+import TournamentStartPopup from '../components/TournamentStartPopup';
+import TournamentRegisterPopup from '../components/TournamentRegisterPopup';
+import TournamentEndedPopup from '../components/TournamentEndedPopup';
+import { endTourFail, endtTourSuc, regTourFail, regTourSuc, startTourFail, startTourSuc, updateRuleFail, updateRuleSuc } from '../toasts/tournament-toasts/toast';
 
 const TournamentEach = () => {
     const { id } = useParams();
@@ -17,6 +21,10 @@ const TournamentEach = () => {
     const [matchSel, setMatchSel] = useState(false);
     const [joinSel, setJoinSel] = useState(false);
     const [showInputRule, setShowInputRule] = useState(false);
+
+    const [showConfirmReg, setShowConfirmReg] = useState(false);
+    const [showConfirmStart, setShowConfirStart] = useState(false);    
+    const [showConfirmEnd, setShowConfirmEnd] = useState(false);
     
 
     const { data: TournamentDetail = [], isError: isTourError, isLoading:isTourLoading, refetch: tourDetailRefetch } = useQuery(
@@ -38,11 +46,51 @@ const TournamentEach = () => {
       updateTournamentRule,
       {
         onError(){
-
+          updateRuleFail();
         },
         onSuccess(){
+          updateRuleSuc();
           tourDetailRefetch();
-          
+        }
+      }
+    );
+
+    const { isLoading: isRegisterTournamentLoading, mutateAsync: mutateAsyncRegisterTournament } = useMutation(
+      registerTournament,
+      {
+        onError(){
+          regTourFail();
+        },
+        onSuccess(){
+          regTourSuc();
+          tourDetailRefetch();
+        }
+      }
+    );
+
+    const { isLoading: StartTournament, mutateAsync: mutateAsyncStartTournament } = useMutation(
+      startTournament,
+      {
+        onError(){
+          startTourFail();
+        },
+        onSuccess(){
+          startTourSuc();
+          tourDetailRefetch();
+        }
+      }
+    );
+
+
+    const { isLoading: isEndTournamentLoading, mutateAsync: mutateAsyncEndTournament } = useMutation(
+      endTournament,
+      {
+        onError(){
+          endTourFail();
+        },
+        onSuccess(){
+          endtTourSuc();
+          tourDetailRefetch();
         }
       }
     );
@@ -78,6 +126,12 @@ const TournamentEach = () => {
         return
       };
 
+      if(user.id !== TournamentDetail.ownerId){
+        setShowInputRule(false);
+        setRule(TournamentDetail.rule)
+        return
+      }
+
       await mutateAsyncUpdateRule({id, payload: rule });
 
       setShowInputRule(false);
@@ -86,6 +140,24 @@ const TournamentEach = () => {
     async function cancelRule(){
       setRule(TournamentDetail.rule)
       setShowInputRule(false)
+    }
+
+    async function onComfirmTourClick(){
+      setShowConfirmReg(true)
+      setShowConfirStart(false)
+      setShowConfirmEnd(false)
+    }
+    
+    async function onRegisterTourClick(){
+      setShowConfirmReg(false)
+      setShowConfirStart(true)
+      setShowConfirmEnd(false)
+    }
+    
+    async function onEndTourClick(){
+      setShowConfirmReg(false)
+      setShowConfirStart(false)
+      setShowConfirmEnd(true)
     }
 
     const showJoinTour = (user.id !== TournamentDetail.ownerId && TournamentDetail.status === "REGISTER");
@@ -108,7 +180,9 @@ const TournamentEach = () => {
 
     
 
-    if(isTourLoading || isjoinLoading || isGetMatchLoading || isUpdateRuleLoading) return (<LoadingPage/>)
+    if(isTourLoading || isjoinLoading || isGetMatchLoading || isUpdateRuleLoading 
+        || isRegisterTournamentLoading || StartTournament || isEndTournamentLoading
+      ) return (<LoadingPage/>)
     if(isTourError || isjoinError || isGetMatchError) return (<ErrorPage/>)
   return (
     <div className="tourEachPage">
@@ -148,14 +222,14 @@ const TournamentEach = () => {
             { tourEnd ? <div className='tourEnd'> Tournament's Ended</div> : <></>}
 
             {/* for owner */}
-            { showConfirmTour ? <div className="joinTournament">Confirm Detail</div> : <></>}
+            { showConfirmTour ? <div className="joinTournament" onClick={onComfirmTourClick}>Confirm Detail</div> : <></>}
+            { showConfirmReg ? <TournamentRegisterPopup setClosePopup={setShowConfirmReg} comfrimReg={mutateAsyncRegisterTournament} tourId={id}/> : <></>}
 
+            { showStartTour ? <div className="joinTournament" onClick={onRegisterTourClick}>Start Tour</div> : <></>}
+            { showConfirmStart ? <TournamentStartPopup setClosePopup={setShowConfirStart} confrimStart={mutateAsyncStartTournament} tourId={id}/> : <></>}
 
-            { showStartTour ? <div className="joinTournament">Start Tour</div> : <></>}
-
-
-            { showEndTour ? <div className="joinTournament">End Tour</div> : <></>}
-       
+            { showEndTour ? <div className="joinTournament" onClick={onEndTourClick}>End Tour</div> : <></>}
+            { showConfirmEnd ? <TournamentEndedPopup setClosePopup={setShowConfirmEnd} confrimEnd={mutateAsyncEndTournament} tourId={id}/> : <></>}
 
         </div>
 
@@ -185,7 +259,7 @@ const TournamentEach = () => {
                 
                 <div className='ruleString'>
                   <div className="settingFlex">
-                    <div className="settingRuleBtn" onClick={() => setShowInputRule(true)}>Setting</div>
+                    {user.id === TournamentDetail.ownerId ? <div className="settingRuleBtn" onClick={() => setShowInputRule(true)}>Setting</div> : <></>}
                   </div>
                   {TournamentDetail.rule }
                 </div>
@@ -195,7 +269,7 @@ const TournamentEach = () => {
             : <></>
           }
           
-          {matchSel ? <div className='matchContrainer' ><MatchContrianer tourMatch={matches}/></div> : <></>}
+          {matchSel ? <div className='matchContrainer' ><MatchContrianer tourMatch={matches} tournamentDetail={TournamentDetail}/></div> : <></>}
           
           {joinSel ? <div className='teamJoinContrainer' >{teamJoinList}</div> : <></>}
         </div>
