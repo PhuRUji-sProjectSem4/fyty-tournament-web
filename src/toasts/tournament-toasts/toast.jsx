@@ -65,7 +65,7 @@ export const createMatchSuc = () => {
 };
 
 export const createMatchFail = (err) => {
-    toast.error("Fail to Create Match" + err.response.data.message, {
+    toast.error("Fail to Create Match. " + err.response.data.message, {
         autoClose : 5000,
         position : "top-right"
     })
