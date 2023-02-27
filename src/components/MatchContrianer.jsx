@@ -40,8 +40,6 @@ const MatchContrianer = (props) => {
           </div>)
   };
 
-  console.log(props.tourMatch);
-
   return (
     <div className="matchWrape">
 
