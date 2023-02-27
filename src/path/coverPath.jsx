@@ -68,6 +68,7 @@ export const ApiRounteKey = {
     getTournamentJoinedEach: "/tournament/join/:id",
 
     getTournamentMatch: "/tournament/:id/match",
+    cretaeTournamentMatch: "/tournament/match",
     
     localLogin: "/auth/login"
 }

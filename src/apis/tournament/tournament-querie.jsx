@@ -84,3 +84,11 @@ export function endTournament(id){
   });
 }
 
+export function createMatch(payload){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .post(ApiRounteKey.cretaeTournamentMatch, payload)
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

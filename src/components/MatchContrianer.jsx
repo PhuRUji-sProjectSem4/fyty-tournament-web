@@ -9,7 +9,7 @@ import AddMatchPopup from './AddMatchPopup';
 const MatchContrianer = (props) => {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
-    const [showAddPopup, setShowPopup] = useState(false);
+    const [showAddPopup, setShowAddPopup] = useState(false);
 
     function onTeamClick(id){
       return () => navigate(generatePath(ClientRounteKey.getTeamEach, {id}))
@@ -26,11 +26,11 @@ const MatchContrianer = (props) => {
               <div className="matchDetail">
                   <div className="teamAndScore">
                     <div className="homeTeamName" onClick={onTeamClick(match.homeTeamData.id)}>{match.homeTeamData.teamName}</div> 
-                    <div className="score"> {match.matchResult === "" ? "" : match.matchResult.teamHomeScore} </div> 
+                    <div className="score"> {match.matchResult === null ? "" : match.matchResult.teamHomeScore} </div> 
                   </div>
                   <div className="vs">vs</div>
                   <div className="teamAndScore">
-                    <div className="score"> {match.matchResult === "" ? "" : match.matchResult.teamAwayScore} </div>  
+                    <div className="score"> {match.matchResult === null ? "" : match.matchResult.teamAwayScore} </div>  
                     <div className="awayTeamName" onClick={onTeamClick(match.awayTeamData.id)}>{match.awayTeamData.teamName}</div>
                   </div>
               </div>
@@ -40,11 +40,14 @@ const MatchContrianer = (props) => {
           </div>)
   };
 
+  console.log(props.tourMatch);
+
   return (
     <div className="matchWrape">
 
-        {user.id === props.tournamentDetail.ownerId && props.tournamentDetail.status !== "ENDED" && props.tournamentDetail.status === "STARTED" ? <div className="addMatch">+ Match</div> : <></>}
-        {showAddPopup ? <AddMatchPopup/> : <></> }
+        {user.id === props.tournamentDetail.ownerId && props.tournamentDetail.status !== "ENDED" && props.tournamentDetail.status === "STARTED" ? <div className="addMatch" onClick={() => setShowAddPopup(true)}>+ Match</div> : <></>}
+        {showAddPopup ? <AddMatchPopup setOpenPopup={setShowAddPopup} teams={props.teams} tournamentDetail={props.tournamentDetail} refetchMatch={props.refetchTourMatch}/> : <></> }
+
         
         <div className="Bracket">Upper Bracket</div>
         <div className="round">
@@ -59,7 +62,7 @@ const MatchContrianer = (props) => {
           {matchShow("2", "UPPER") == "" ? <div className='upComing'>Up Coming</div> : matchShow("2", "UPPER")}
         </div>
 
-        <div className="round">Upper Final</div>
+        <div className="round">Upper Final (Round3)</div>
         <div className="matchRow">
           {matchShow("3", "UPPER") == "" ? <div className='upComing'>Up Coming</div> : matchShow("3", "UPPER")}
         </div>
@@ -80,13 +83,13 @@ const MatchContrianer = (props) => {
           {matchShow("3", "LOWWER") == "" ? <div className='upComing'>Up Coming</div> : matchShow("3", "LOWWER")}
         </div>
 
-        <div className="round">Lower Final</div>
+        <div className="round">Lower Final (Round4)</div>
         <div className="matchRow">
           {matchShow("4", "LOWWER") == "" ? <div className='upComing'>Up Coming</div> : matchShow("4", "LOWWER")}
         </div>
 
-        <div className="Bracket">Final</div>
-        <div className="round">Grand Final</div>
+        <div className="Bracket">Final (Uppper)</div>
+        <div className="round">Grand Final (Round4)</div>
         <div className="matchRow">
           {matchShow("4", "UPPER") == "" ? <div className='upComing'>Up Coming</div> : matchShow("4", "UPPER")}
         </div>

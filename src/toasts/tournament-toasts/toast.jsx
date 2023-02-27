@@ -56,3 +56,17 @@ export const endTourFail = () => {
         position : "top-right"
     })
 };
+
+export const createMatchSuc = () => {
+    toast.success("Match is Added", {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
+
+export const createMatchFail = (err) => {
+    toast.error("Fail to Create Match" + err.message, {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};

@@ -37,7 +37,7 @@ const TournamentEach = () => {
       () => getTournamentJoined(id)
     )
 
-    const { data: matches = [], isError: isGetMatchError, isLoading: isGetMatchLoading } = useQuery(
+    const { data: matches = [], isError: isGetMatchError, isLoading: isGetMatchLoading, refetch: refetchMatch } = useQuery(
       "matches",
       () => getTournamentMatch(id)
     )
@@ -269,7 +269,7 @@ const TournamentEach = () => {
             : <></>
           }
           
-          {matchSel ? <div className='matchContrainer' ><MatchContrianer tourMatch={matches} tournamentDetail={TournamentDetail}/></div> : <></>}
+          {matchSel ? <div className='matchContrainer' ><MatchContrianer tourMatch={matches} tournamentDetail={TournamentDetail} teams={joinsDetail} refetchTourMatch={refetchMatch}/></div> : <></>}
           
           {joinSel ? <div className='teamJoinContrainer' >{teamJoinList}</div> : <></>}
         </div>
