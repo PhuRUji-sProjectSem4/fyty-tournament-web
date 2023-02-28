@@ -92,9 +92,9 @@ const AddMatchPopup = (props) => {
                   {teamList}
                 </select>
 
-                <input type="datetime-local" name="" id="" {...register("date", {required: true})}/>
+                <input className='dateInput' type="datetime-local" name="" id="" {...register("date", {required: true})}/>
 
-                <input type="submit" value="Create Match" />
+                <input className='submit' type="submit" value="Create Match" />
               </form>
             </div>
         </div>

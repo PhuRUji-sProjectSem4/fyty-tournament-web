@@ -10,7 +10,8 @@ const MatchContrianer = (props) => {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
     const [showAddPopup, setShowAddPopup] = useState(false);
-
+    const [editScore, setEditScore] = useState(false);
+    
     function onTeamClick(id){
       return () => navigate(generatePath(ClientRounteKey.getTeamEach, {id}))
     }
@@ -36,7 +37,7 @@ const MatchContrianer = (props) => {
               </div>
               
               <div className="playTime"> Date: {(match.date).slice(0,10)}  Time: {(match.date).slice(11,16)}</div>
-              {user.id === props.tournamentDetail.ownerId ? <div className='editScoreBtn'><img src="/asset/edit.png" alt="edit" /></div> : <></>}
+              {user.id === props.tournamentDetail.ownerId && match.matchResult === null ? <div className='editScoreBtn'><img src="/asset/edit.png" alt="edit" /></div> : <></>}
           </div>)
   };
 
