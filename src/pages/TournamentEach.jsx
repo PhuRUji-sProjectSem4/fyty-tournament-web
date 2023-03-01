@@ -13,6 +13,7 @@ import TournamentStartPopup from '../components/TournamentStartPopup';
 import TournamentRegisterPopup from '../components/TournamentRegisterPopup';
 import TournamentEndedPopup from '../components/TournamentEndedPopup';
 import { endTourFail, endtTourSuc, regTourFail, regTourSuc, startTourFail, startTourSuc, updateRuleFail, updateRuleSuc } from '../toasts/tournament-toasts/toast';
+import JoinTournamentPopup from '../components/JoinTournamentPopup';
 
 const TournamentEach = () => {
     const { id } = useParams();
@@ -21,6 +22,7 @@ const TournamentEach = () => {
     const [matchSel, setMatchSel] = useState(false);
     const [joinSel, setJoinSel] = useState(false);
     const [showInputRule, setShowInputRule] = useState(false);
+    const [showJoinTourPopup, setShowJoinTourPopup] = useState(false);
 
     const [showConfirmReg, setShowConfirmReg] = useState(false);
     const [showConfirmStart, setShowConfirStart] = useState(false);    
@@ -32,7 +34,7 @@ const TournamentEach = () => {
       () => getTournamentEach(id)
     )
 
-    const { data: joinsDetail = [], isError: isjoinError, isLoading:isjoinLoading } = useQuery(
+    const { data: joinsDetail = [], isError: isjoinError, isLoading:isjoinLoading, refetch: refetchJoinDetail } = useQuery(
       "tourJoined",
       () => getTournamentJoined(id)
     )
@@ -94,7 +96,6 @@ const TournamentEach = () => {
         }
       }
     );
-
 
     const [rule, setRule] = useState(TournamentDetail?.rule);
 
@@ -216,7 +217,9 @@ const TournamentEach = () => {
             </div>
 
             {/* for user */}
-            { showJoinTour ? <div className="joinTournament">Join Tournament</div> : <></>}
+            { showJoinTour ? <div className="joinTournament" onClick={() => setShowJoinTourPopup(true)}>Join Tournament</div> : <></>}
+            { showJoinTourPopup ? <JoinTournamentPopup setClosePopup={setShowJoinTourPopup}/> : <></>}
+
 
             { tourStart ? <div className='tourEnd'> Tournament's Started</div> : <></>}
             { tourEnd ? <div className='tourEnd'> Tournament's Ended</div> : <></>}

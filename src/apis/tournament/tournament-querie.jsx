@@ -92,3 +92,12 @@ export function createMatch(payload){
       .catch(reject)
   });
 }
+
+export function joinTournament(payload){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .post(ApiRounteKey.joinTournament, payload)
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

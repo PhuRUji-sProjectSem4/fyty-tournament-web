@@ -70,3 +70,17 @@ export const createMatchFail = (err) => {
         position : "top-right"
     })
 };
+
+export const joinTourSuc = () => {
+    toast.success("Join Tournament Success", {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
+
+export const joinTourFail = (err) => {
+    toast.error("Fail to Join Tournamnet. " + err.response.data.message, {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
