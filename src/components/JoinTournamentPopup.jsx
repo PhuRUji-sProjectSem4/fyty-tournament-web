@@ -12,10 +12,12 @@ const JoinTournamentPopup = (props) => {
         {
           onError(err){
             joinTourFail(err);
+            props.setClosePopup(false);
           },
           onSuccess(){
             joinTourSuc();
-            props.reJoinDetail();
+            props.refetchJoin();
+            props.setClosePopup(false);
           }
         }
       );

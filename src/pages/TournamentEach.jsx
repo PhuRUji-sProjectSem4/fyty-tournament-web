@@ -218,8 +218,7 @@ const TournamentEach = () => {
 
             {/* for user */}
             { showJoinTour ? <div className="joinTournament" onClick={() => setShowJoinTourPopup(true)}>Join Tournament</div> : <></>}
-            { showJoinTourPopup ? <JoinTournamentPopup setClosePopup={setShowJoinTourPopup}/> : <></>}
-
+            { showJoinTourPopup ? <JoinTournamentPopup setClosePopup={setShowJoinTourPopup} refetchJoin={refetchJoinDetail}/> : <></>}
 
             { tourStart ? <div className='tourEnd'> Tournament's Started</div> : <></>}
             { tourEnd ? <div className='tourEnd'> Tournament's Ended</div> : <></>}
