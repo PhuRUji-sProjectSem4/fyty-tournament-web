@@ -101,3 +101,12 @@ export function joinTournament(payload){
       .catch(reject)
   });
 }
+
+export function createMatchScore(payload){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .post(ApiRounteKey.createMatchScore, payload)
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

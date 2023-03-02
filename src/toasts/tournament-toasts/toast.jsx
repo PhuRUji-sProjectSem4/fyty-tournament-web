@@ -84,3 +84,24 @@ export const joinTourFail = (err) => {
         position : "top-right"
     })
 };
+
+export const wrongScore = () => {
+    toast.error("Wrong Score Input.",{
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
+
+export const createScoreSuc = () => {
+    toast.success("Score Success", {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
+
+export const createScoreSucFail = (err) => {
+    toast.error("Fail to Score. " + err.response.data.message, {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};

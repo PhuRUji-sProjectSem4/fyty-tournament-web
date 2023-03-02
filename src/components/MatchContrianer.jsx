@@ -4,41 +4,20 @@ import "./css/MatchContrainer.css"
 import { ClientRounteKey } from '../path/coverPath'
 import { UserContext } from '../App';
 import AddMatchPopup from './AddMatchPopup';
+import MatchList from './MatchList';
 
 
 const MatchContrianer = (props) => {
-    const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
-    const [showAddPopup, setShowAddPopup] = useState(false);
-    const [editScore, setEditScore] = useState(false);
-    
-    function onTeamClick(id){
-      return () => navigate(generatePath(ClientRounteKey.getTeamEach, {id}))
-    }
+    const [showAddPopup, setShowAddPopup] = useState(false); 
 
     function matchShow(round, bracket){
        return props.tourMatch
         .filter((match) => match.round === round && match.bracket === bracket)
         .sort((a,b) => a.pair - b.pair)
         .map((match) =>
-          <div className="matchList">
-              <div className="pair">Pair: {match.pair}</div>
-
-              <div className="matchDetail">
-                  <div className="teamAndScore">
-                    <div className="homeTeamName" onClick={onTeamClick(match.homeTeamData.id)}>{match.homeTeamData.teamName}</div> 
-                    <div className="score"> {match.matchResult === null ? "" : match.matchResult.teamHomeScore} </div> 
-                  </div>
-                  <div className="vs">vs</div>
-                  <div className="teamAndScore">
-                    <div className="score"> {match.matchResult === null ? "" : match.matchResult.teamAwayScore} </div>  
-                    <div className="awayTeamName" onClick={onTeamClick(match.awayTeamData.id)}>{match.awayTeamData.teamName}</div>
-                  </div>
-              </div>
-              
-              <div className="playTime"> Date: {(match.date).slice(0,10)}  Time: {(match.date).slice(11,16)}</div>
-              {user.id === props.tournamentDetail.ownerId && match.matchResult === null ? <div className='editScoreBtn'><img src="/asset/edit.png" alt="edit" /></div> : <></>}
-          </div>)
+          <MatchList {...match} tournamentDetail={props.tournamentDetail} refetchMatch={props.refetchTourMatch}/>
+        )
   };
 
   return (
