@@ -126,7 +126,7 @@ const CreateTournamentPopup = (props) => {
 
                     <div className="uploadWrape" >
                             <label>Tournament Cover (1600px x 300px)</label>
-                            <input type="file" name="tourCover" id="tourCover"  onChange={(event) => coverChange(event)}/>
+                            <input type="file" name="tourCover" id="tourCover" accept="image/png, image/gif, image/jpeg"  onChange={(event) => coverChange(event)}/>
                     </div>
 
                     <input className='submit' type="submit" value="Create Tournament" />

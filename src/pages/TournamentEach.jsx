@@ -14,6 +14,7 @@ import TournamentRegisterPopup from '../components/TournamentRegisterPopup';
 import TournamentEndedPopup from '../components/TournamentEndedPopup';
 import { endTourFail, endtTourSuc, regTourFail, regTourSuc, startTourFail, startTourSuc, updateRuleFail, updateRuleSuc } from '../toasts/tournament-toasts/toast';
 import JoinTournamentPopup from '../components/JoinTournamentPopup';
+import { getUserTeam } from '../apis/user/user-queries';
 
 const TournamentEach = () => {
     const { id } = useParams();
@@ -42,6 +43,11 @@ const TournamentEach = () => {
     const { data: matches = [], isError: isGetMatchError, isLoading: isGetMatchLoading, refetch: refetchMatch } = useQuery(
       "matches",
       () => getTournamentMatch(id)
+    )
+
+    const {data: userTeamData, isError: isUserTeamDataError, isLoading: isUserDataLoading} = useQuery(
+      "userTeam",
+      () => getUserTeam(user.id)
     )
 
     const { isLoading: isUpdateRuleLoading, mutateAsync: mutateAsyncUpdateRule } = useMutation(
@@ -218,7 +224,7 @@ const TournamentEach = () => {
 
             {/* for user */}
             { showJoinTour ? <div className="joinTournament" onClick={() => setShowJoinTourPopup(true)}>Join Tournament</div> : <></>}
-            { showJoinTourPopup ? <JoinTournamentPopup setClosePopup={setShowJoinTourPopup} refetchJoin={refetchJoinDetail}/> : <></>}
+            { showJoinTourPopup ? <JoinTournamentPopup userTeam={userTeamData} tourDetail={TournamentDetail} reTourDetail={tourDetailRefetch} setClosePopup={setShowJoinTourPopup} refetchJoin={refetchJoinDetail}/> : <></>}
 
             { tourStart ? <div className='tourEnd'> Tournament's Started</div> : <></>}
             { tourEnd ? <div className='tourEnd'> Tournament's Ended</div> : <></>}

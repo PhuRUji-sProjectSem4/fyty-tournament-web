@@ -117,7 +117,7 @@ const CreateTeam = (props) => {
                     <form className="formWrape" onSubmit={handleSubmit(onCreateTeamClick)}>
                         <div className="uploadWrape">
                             <label>Team Logo (90px x 90px)</label>
-                            <input className='logoUpload' type="file" onChange={(event) => logoChange(event)}/>
+                            <input className='logoUpload' type="file" accept="image/png, image/gif, image/jpeg" onChange={(event) => logoChange(event)}/>
                         </div>
                         <input className='textInput' type="text" name="teamName" placeholder='Team Name' {...register("teamName", {require: true, minLength:1, maxLength: 32, pattern: /^[A-Za-z0-9]+$/i })}/>
                         {errors.teamName && <p className='errors'>Team name is required</p> }
@@ -132,7 +132,7 @@ const CreateTeam = (props) => {
                         <input className='textInput' type="text" name="Description" placeholder='Description' {...register("description", {require: true, minLength:1, maxLength: 32, pattern: /^[A-Za-z0-9]+$/i })}/>
                         <div className="uploadWrape">
                             <label>Team Cover (1600px x 300px)</label> 
-                            <input className='coverUpload' type="file" onChange={(event) => coverChange(event)}/>
+                            <input className='coverUpload' type="file" accept="image/png, image/gif, image/jpeg" onChange={(event) => coverChange(event)}/>
                         </div>
                         <input className='submit' type="submit" value="Create Your Team" />
                     </form>
