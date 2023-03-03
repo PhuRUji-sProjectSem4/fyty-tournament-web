@@ -1,0 +1,12 @@
+.uploadBtn{
+    background: #fff;
+    color: var(--fyty-color);
+    text-align: center;
+    border-radius: 4px;
+    width: 130px;
+}
+
+.uploadBtn:hover{
+    background: #ededed;
+    cursor: pointer;
+}

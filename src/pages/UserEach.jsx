@@ -10,6 +10,7 @@ import ErrorPage from './ErrorPage';
 import LoadingPage from './LoadingPage';
 import TournamentList from '../components/TournamentList';
 import TeamRoleList from '../components/TeamRoleList';
+import UploadPictureBtn from '../components/UploadPictureBtn';
 
 const UserEach = () => {
     const { id } = useParams();
@@ -56,10 +57,16 @@ const UserEach = () => {
     <div className="userEachPage">
       <div className="userHead">{userData.id = user.id ? <>My Profile</> : <>User Profile</>}</div>
       <img className='cover' src={userData.coverUrl} alt="cover" />
+      {user.id === id ? <div className="changeCover"><UploadPictureBtn/></div> : <></>}
+
 
       <div className="userContent">
           <div className="userLogo">
-              <img className='logo' src={userData.protraitUrl} alt="protraitUrl" />
+              <div className="imgChangWrape">
+                <img className='logo' src={userData.protraitUrl} alt="protraitUrl"/>
+                {user.id === id ? <div className="changeLogo"><UploadPictureBtn/></div> : <></>}
+              </div>
+
               
               <div className="name-des-user">
                 <h1>{userData.username}</h1>
