@@ -15,6 +15,7 @@ import LoadingPage from "./pages/LoadingPage";
 import ErrorPage from "./pages/ErrorPage";
 import coreApi from "./core/axios";
 import { ApiRounteKey } from "./path/coverPath";
+import Callback from "./pages/Callback";
 
 export const GameContext = React.createContext(); 
 export const UserContext = React.createContext();
@@ -91,6 +92,9 @@ const App = () => {
 
                         {/* error */}
                         <Route path="/error"  element={<ErrorPage />} />
+                        
+                        {/* callback */}
+                        <Route path="/callback/:vendor"  element={<Callback />} />
                         
 
                     </Routes>

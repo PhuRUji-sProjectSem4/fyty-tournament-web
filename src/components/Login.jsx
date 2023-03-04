@@ -43,6 +43,12 @@ const Login = (props) => {
     props.setLoginTrigger(prev => prev=false)
   };
 
+
+  async function onGoogleLoginClick(){
+    window.location.href = "https://fyty-tournament-backend-production.up.railway.app/auth/google";
+    props.setLoginTrigger(false)
+  };
+
   function togglePasswordShow (){
     return setPasswordShow(prev => !prev)
   };
@@ -79,7 +85,7 @@ const Login = (props) => {
               <div className="line"></div>
             </div>
             <div className="oauth">
-              <div className="googleWrapper">
+              <div className="googleWrapper" onClick={onGoogleLoginClick}>
                 <div className="icon">
                   <img src="/asset/google.png" alt="googleIcon" width="30" height="30" />
                 </div>
