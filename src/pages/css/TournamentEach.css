@@ -1,21 +1,25 @@
-.tourEachPage{
+.tourEachPage {
     position: relative;
     padding: 1em 3.5em;
     z-index: 100;
 }
 
-.tourEachHead{
+.tourEachHead {
     color: var(--line-color);
     font-weight: bold;
 }
 
-.picAndPrizeWrape{
+.picAndPrizeWrape {
     display: flex;
     justify-content: center;
     border-radius: 10px;
 }
 
-.tourCover img{
+.tourCover{
+    position: relative;
+}
+
+.tourCover img {
     /* width: 900px; */
     width: 70vw;
     height: 400px;
@@ -24,7 +28,7 @@
     box-shadow: 0 0px 16px 0 rgb(10, 253, 221);
 }
 
-.prizeBox{
+.prizeBox {
     background: var(--componet-color);
     height: 400px;
     /* width: 340px; */
@@ -35,54 +39,54 @@
     grid-template-rows: 1.2fr 1fr 1fr 1fr;
 }
 
-.prizePool{
+.prizePool {
     font-size: 1.4em;
     font-weight: bold;
 }
 
-.prize{
+.prize {
     color: #fff;
-    text-shadow: 0 0 7px rgb(10, 253, 221), 0 0 7px rgb(10, 253, 221) ;
+    text-shadow: 0 0 7px rgb(10, 253, 221), 0 0 7px rgb(10, 253, 221);
     font-size: 1.8em;
     font-weight: bold;
 }
 
-.bath{
+.bath {
     color: var(--fyty-color);
     text-shadow: none;
 }
 
-.joinTournament{
+.joinTournament {
     height: 40px;
     width: 180px;
     background: var(--fyty-color);
     border-radius: 6px;
 
     margin: auto;
-    
+
 
     font-size: 1.2em;
     font-weight: bold;
 
-    display:  flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
     transition: 0.3s;
-    box-shadow: 
-    0 0 7px rgb(10, 253, 221);
+    box-shadow:
+        0 0 7px rgb(10, 253, 221);
 
 }
 
-.joinTournament:hover{
+.joinTournament:hover {
     cursor: pointer;
     background: var(--hover-color);
-    box-shadow: 
+    box-shadow:
         0 0 7px rgb(10, 253, 221),
         0 0 9px rgb(10, 253, 221);
 }
 
-.tourEnd{
+.tourEnd {
     height: 40px;
     width: 200px;
     color: var(--line-color);
@@ -90,50 +94,50 @@
     border-radius: 6px;
 
     margin: auto;
-    
+
 
     font-size: 1.2em;
     font-weight: bold;
 
-    display:  flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
 }
 
-.prizeBox label{
+.prizeBox label {
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.timeWrape{
+.timeWrape {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.time{
+.time {
     font-size: 1.4em;
     font-weight: bold;
 }
 
-label.regTime{
+label.regTime {
     color: rgb(108, 211, 108);
 }
 
-label.startTime{
+label.startTime {
     color: var(--noti-color);
 }
 
-.tourDetailBox{
+.tourDetailBox {
     display: flex;
     flex-direction: column;
 
     margin-top: 40px;
 }
 
-.selectBar{
+.selectBar {
     height: 60px;
     width: 100%;
     /* background: var(--componet-color);
@@ -143,7 +147,7 @@ label.startTime{
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.ruleNotSel{
+.ruleNotSel {
     background: var(--componet-color);
     height: 100%;
     width: 100%;
@@ -159,12 +163,12 @@ label.startTime{
     font-size: 1.2em;
 }
 
-.ruleNotSel:hover{
+.ruleNotSel:hover {
     background: var(--line-color);
     cursor: pointer;
 }
 
-.ruleSel{
+.ruleSel {
     background: var(--fyty-color);
     height: 100%;
     width: 100%;
@@ -182,7 +186,7 @@ label.startTime{
     cursor: pointer;
 }
 
-.matchNotSel{
+.matchNotSel {
     background: var(--componet-color);
     height: 100%;
     width: 100%;
@@ -197,12 +201,12 @@ label.startTime{
     font-size: 1.2em;
 }
 
-.matchNotSel:hover{
+.matchNotSel:hover {
     background: var(--line-color);
     cursor: pointer;
 }
 
-.matchSel{
+.matchSel {
     background: var(--fyty-color);
     height: 100%;
     width: 100%;
@@ -219,7 +223,7 @@ label.startTime{
     cursor: pointer;
 }
 
-.teamJoinNotSel{
+.teamJoinNotSel {
     background: var(--componet-color);
     height: 100%;
     width: 100%;
@@ -235,12 +239,12 @@ label.startTime{
     font-size: 1.2em;
 }
 
-.teamJoinNotSel:hover{
+.teamJoinNotSel:hover {
     background: var(--line-color);
     cursor: pointer;
 }
 
-.teamJoinSel{
+.teamJoinSel {
     background: var(--fyty-color);
     height: 100%;
     width: 100%;
@@ -258,7 +262,7 @@ label.startTime{
     cursor: pointer;
 }
 
-.tourDetail{
+.tourDetail {
     width: 100%;
     min-height: 400px;
     background: var(--componet-color);
@@ -266,16 +270,16 @@ label.startTime{
     border: solid 1px var(--line-color);
 }
 
-.ruleContrainer{
+.ruleContrainer {
     margin: 20px 30px;
     word-wrap: break-word
 }
 
-.matchContrainer{
+.matchContrainer {
     margin: 20px 30px;
 }
 
-.teamJoinContrainer{
+.teamJoinContrainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
@@ -284,18 +288,18 @@ label.startTime{
 }
 
 
-.ruleString{
+.ruleString {
     font-size: 1.2em;
     white-space: pre-line;
 }
 
-.settingFlex{
+.settingFlex {
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-end;
 }
 
-.settingRuleBtn{
+.settingRuleBtn {
     background: var(--fyty-color);
     width: 100px;
     height: 30px;
@@ -307,19 +311,19 @@ label.startTime{
     justify-content: center;
 }
 
-.settingRuleBtn:hover{
+.settingRuleBtn:hover {
     background: var(--hover-color);
     cursor: pointer;
 }
 
-.ruleBtn{
+.ruleBtn {
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-end;
     gap: 10px;
 }
 
-.confirmRuleBtn{
+.confirmRuleBtn {
     background: var(--fyty-color);
     width: 100px;
     height: 30px;
@@ -331,12 +335,12 @@ label.startTime{
     justify-content: center;
 }
 
-.confirmRuleBtn:hover{
+.confirmRuleBtn:hover {
     background: var(--hover-color);
     cursor: pointer;
 }
 
-.cancelRuleBtn{
+.cancelRuleBtn {
     color: var(--line-color);
     width: 94px;
     height: 24px;
@@ -349,19 +353,25 @@ label.startTime{
     justify-content: center;
 }
 
-.cancelRuleBtn:hover{
+.cancelRuleBtn:hover {
     color: var(--noti-color);
     cursor: pointer;
 }
 
-.ruleInput textarea{
+.ruleInput textarea {
     background: var(--bg-color);
     border: none;
-    border-radius:  8px;
-    
+    border-radius: 8px;
+
     font-size: 1.2em;
     color: #fff;
 
     min-height: 100px;
     width: 100%;
+}
+
+.changeTournamentCover {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }

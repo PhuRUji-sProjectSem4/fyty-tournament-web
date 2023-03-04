@@ -15,7 +15,7 @@
 .createTeamPopup{
     position: relative;
     background: var(--componet-color);
-    min-height: 565px;
+    min-height: 545px;
     width: 400px;
     z-index: 99999;
     border-radius: 8px;

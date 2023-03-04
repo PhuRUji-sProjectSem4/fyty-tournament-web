@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom'
-import { endTournament, getTournamentEach, getTournamentJoined, getTournamentMatch, registerTournament, startTournament, updateTournamentRule } from '../apis/tournament/tournament-querie';
+import { endTournament, getTournamentEach, getTournamentJoined, getTournamentMatch, registerTournament, startTournament, updateTournamentDetail, updateTournamentRule } from '../apis/tournament/tournament-querie';
 import LoadingPage from './LoadingPage'
 import ErrorPage from './ErrorPage'
 import { UserContext } from '../App';
@@ -15,6 +15,9 @@ import TournamentEndedPopup from '../components/TournamentEndedPopup';
 import { endTourFail, endtTourSuc, regTourFail, regTourSuc, startTourFail, startTourSuc, updateRuleFail, updateRuleSuc } from '../toasts/tournament-toasts/toast';
 import JoinTournamentPopup from '../components/JoinTournamentPopup';
 import { getUserTeam } from '../apis/user/user-queries';
+import UploadPicturePopup from '../components/UploadPicturePopup';
+import UploadPictureBtn from '../components/UploadPictureBtn';
+import { updatePicFail, updatePicSuc } from '../toasts/user-toasts/toast';
 
 const TournamentEach = () => {
     const { id } = useParams();
@@ -24,6 +27,7 @@ const TournamentEach = () => {
     const [joinSel, setJoinSel] = useState(false);
     const [showInputRule, setShowInputRule] = useState(false);
     const [showJoinTourPopup, setShowJoinTourPopup] = useState(false);
+    const [showChangCoverPopup, setShowChangeCoverPopup] = useState(false);
 
     const [showConfirmReg, setShowConfirmReg] = useState(false);
     const [showConfirmStart, setShowConfirStart] = useState(false);    
@@ -99,6 +103,21 @@ const TournamentEach = () => {
         onSuccess(){
           endtTourSuc();
           tourDetailRefetch();
+        }
+      }
+    );
+
+    const { isLoading: isUpdateTournamentLoading, mutateAsync: mutateAsyncUpdateTournament } = useMutation(
+      updateTournamentDetail,
+      {
+        onError(){
+          updatePicFail();
+          setShowChangeCoverPopup(false);
+        },
+        onSuccess(){
+          updatePicSuc();
+          tourDetailRefetch();
+          setShowChangeCoverPopup(false);
         }
       }
     );
@@ -203,7 +222,9 @@ const TournamentEach = () => {
       <div className="picAndPrizeWrape">
         <div className="tourCover">
           <img src={TournamentDetail.coverUrl} alt="tourCover" />
+          {user.id === TournamentDetail.ownerId ? <div className="changeTournamentCover" onClick={() => setShowChangeCoverPopup(true)}><UploadPictureBtn/></div> : <></>}
         </div>
+        {showChangCoverPopup ? <UploadPicturePopup targetId={TournamentDetail.id} mutateFunc={mutateAsyncUpdateTournament} isLoading={isUpdateTournamentLoading} payload={"coverUrl"} storage={"Tournament"} head={"Cover"} closePopup={setShowChangeCoverPopup}/> : <></>}
 
         <div className="prizeBox">
             

@@ -45,7 +45,7 @@ const App = () => {
       
       const {data} = await getUser();
       user[1](data);
-      localStorage.setItem("token", user.accessToken);
+      localStorage.setItem("token", token);
     }
     catch(err){
       coreApi.defaults.headers.common["Authorization"] = "";

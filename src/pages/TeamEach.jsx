@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom'
-import { getTeamEach, getTeamMember, getTeamReq, getTeamTourJoined } from '../apis/team/team-queries';
+import { getTeamEach, getTeamMember, getTeamReq, getTeamTourJoined, updateTeamDetail } from '../apis/team/team-queries';
 import LoadingPage from './LoadingPage';
 
 import "./css/TeamEach.css"
@@ -14,6 +14,9 @@ import { UserContext } from '../App';
 import { ClientRounteKey } from '../path/coverPath';
 import TeamRequest from '../components/TeamRequest';
 import LeaveConfirm from '../components/LeaveConfirm';
+import UploadPictureBtn from '../components/UploadPictureBtn';
+import UploadPicturePopup from '../components/UploadPicturePopup';
+import { updatePicFail, updatePicSuc } from '../toasts/user-toasts/toast';
 
 
 export const TeamContext = React.createContext();
@@ -28,9 +31,11 @@ const TeamEach = () => {
     const [confirmShow, setConformShow] = useState(false);
     const [reqShow, setReqShow] = useState(false);
     const [leaveConShow, setLeaveConShow] = useState(false);
+    const [showChangLogoPopup, setShowChangeLogoPopup] = useState(false);
+    const [showChangCoverPopup, setShowChangeCoverPopup] = useState(false);
     
 
-    const {data: team = {}, error: teamError, isLoading: teamLoading } = useQuery(
+    const {data: team = {}, error: teamError, isLoading: teamLoading, refetch: refetchTeam } = useQuery(
       "team",
       () => getTeamEach(id)
     );
@@ -48,6 +53,23 @@ const TeamEach = () => {
     const {data: reqs = [], error: reqsError, isLoading: reqsLoading, refetch: reReq } = useQuery(
       "teamReq",
       () => getTeamReq(id)
+    );
+
+    const {isLoading: isUpdateTeamDetailLoading, mutateAsync: mutateAsyncUpdateTeamDetail} = useMutation(
+      updateTeamDetail,
+      {
+        onError(){
+          setShowChangeLogoPopup(false);
+          setShowChangeCoverPopup(false);
+          updatePicFail();
+        },
+        onSuccess(){
+          setShowChangeLogoPopup(false);
+          setShowChangeCoverPopup(false);
+          updatePicSuc();
+          refetchTeam();
+        }
+      }
     );
 
     
@@ -111,12 +133,17 @@ const TeamEach = () => {
       <div className='teamEach'>
           <div className="teamCover">
             <img src={team.coverUrl} alt="team cover" />
+            {user.id === team.ownerId ? <div className="changeTeamCover" onClick={() => setShowChangeCoverPopup(true)}><UploadPictureBtn/></div> : <></>}
           </div>
+            {showChangCoverPopup ? <UploadPicturePopup targetId={team.id} mutateFunc={mutateAsyncUpdateTeamDetail} isLoading={isUpdateTeamDetailLoading} payload={"coverUrl"} storage={"Team"} head={"Cover"} closePopup={setShowChangeCoverPopup}/> : <></>}
           <div className="teamEachHead">Team Profile</div>
 
           <div className="teamContent">
             <div className="teamLogo">
               <img className='logo' src={team.logoUrl} alt="logo" />
+              {user.id === team.ownerId ? <div className="changeTeamLogo" onClick={() => setShowChangeLogoPopup(true)}><UploadPictureBtn/></div> : <></>}
+              {showChangLogoPopup ? <UploadPicturePopup targetId={team.id} mutateFunc={mutateAsyncUpdateTeamDetail} isLoading={isUpdateTeamDetailLoading} payload={"logoUrl"} storage={"Team"} head={"Logo"} closePopup={setShowChangeLogoPopup}/> : <></>}
+              
               <div className="name-des">
                 <h1>{team.teamName}</h1>
                 <div className="teamDes">

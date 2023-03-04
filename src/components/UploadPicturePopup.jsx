@@ -26,14 +26,22 @@ const UploadPicturePopup = (props) => {
 
   async function changePicture(){
     const firebasePictureUrl = await uploadImage();
-    if(props.payload === "coverUrl"){
-      await props.mutateFunc({coverUrl : firebasePictureUrl})
+
+    if(props.storage === "User"){
+      if(props.payload === "coverUrl"){
+        await props.mutateFunc({coverUrl : firebasePictureUrl})
+      }
+      else if(props.payload === "protraitUrl"){
+        await props.mutateFunc({protraitUrl : firebasePictureUrl})
+      }
     }
-    else if(props.payload === "protraitUrl"){
-      await props.mutateFunc({protraitUrl : firebasePictureUrl})
-    }
-    else if(props.payload === "logoUrl"){
-      await props.mutateFunc({logoUrl : firebasePictureUrl})
+    else if(props.storage === "Team" || props.storage === "Tournament"){
+      if(props.payload === "coverUrl"){
+        await props.mutateFunc({id: props.targetId, coverUrl : firebasePictureUrl})
+      }
+      else if(props.payload === "logoUrl"){
+        await props.mutateFunc({id:props.targetId, logoUrl : firebasePictureUrl})
+      }
     }
     else{
       console.log("Wrong Property");

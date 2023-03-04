@@ -20,6 +20,7 @@
     width: 440px;
     
     column-gap: 20px;
+    position: relative;
 }
 
 .teamLogo img{
@@ -227,4 +228,17 @@
     padding: 8px;
     text-align: center;
     font-size: 1.2em;
+}
+
+.changeTeamLogo{
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+}
+
+.changeTeamCover{
+    position: absolute;
+    top: 340px;
+    right: 60px;
+    z-index: 308;
 }

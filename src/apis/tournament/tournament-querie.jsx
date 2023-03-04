@@ -110,3 +110,13 @@ export function createMatchScore(payload){
       .catch(reject)
   });
 }
+
+export function updateTournamentDetail(payload){
+  const {id, ...data} = payload 
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(generatePath(ApiRounteKey.updateTournament, {id}), data)
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}
