@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,6 +13,8 @@ import TournamentEach from "./pages/TournamentEach";
 import UserEach from "./pages/UserEach";
 import LoadingPage from "./pages/LoadingPage";
 import ErrorPage from "./pages/ErrorPage";
+import coreApi from "./core/axios";
+import { ApiRounteKey } from "./path/coverPath";
 
 export const GameContext = React.createContext(); 
 export const UserContext = React.createContext();
@@ -25,6 +27,35 @@ const App = () => {
     "games",
     getGames
   )
+
+  async function getUser(){
+    return await coreApi.get(ApiRounteKey.getMyProfile);
+  }
+
+  async function autoLogin(){
+    const token = localStorage.getItem("token");
+
+    if(!token){
+      return
+    }
+
+    try{
+
+      coreApi.defaults.headers.common["Authorization"] = "Bearer " + token;
+      
+      const {data} = await getUser();
+      user[1](data);
+      localStorage.setItem("token", user.accessToken);
+    }
+    catch(err){
+      coreApi.defaults.headers.common["Authorization"] = "";
+      localStorage.removeItem("token");
+    }
+  }
+
+  useEffect(() => {
+    autoLogin()
+  },[])
 
 
   if(error) return (

@@ -64,6 +64,21 @@ body{
     transition: 0.3s;
 }
 
+
+.submitLoading{
+    background: #07b5b5b8;
+    color: #ffffff;
+    width: 320px;
+    height: 35px    ;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    pointer-events: none;
+    margin-top: 20px;
+}
+
 input:focus {
     outline: none;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);

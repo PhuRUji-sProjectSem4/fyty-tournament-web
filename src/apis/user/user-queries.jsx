@@ -56,3 +56,12 @@ export function getUserTeam(id){
       .catch(reject)
   });
 }
+
+export function updateUserProfile(payload){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .put(ApiRounteKey.updateProfile, payload)
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

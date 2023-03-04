@@ -14,9 +14,13 @@
 .uploadPictureInner{
     position: relative;
     background: var(--componet-color);
-    min-height: 420px;
+    min-height: 260px;
     width: 400px;
     border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .closeUploadPictureInner{
@@ -33,4 +37,8 @@
 .closeUploadPictureInner:hover{
     cursor: pointer;
     color: var(--noti-color);
+}
+
+.uploadPictureInner .submit{
+    margin-top: 20px;
 }
