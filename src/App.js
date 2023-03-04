@@ -50,6 +50,7 @@ const App = () => {
     catch(err){
       coreApi.defaults.headers.common["Authorization"] = "";
       localStorage.removeItem("token");
+      return (<errorPage/>)
     }
   }
 
