@@ -14,7 +14,12 @@ const TeamRoleList = (props) => {
 
   return (
     <div className="member-list-wrape" onClick={onMemberClick}>
-      <img src={props.team.logoUrl} alt="" />
+      <div className="logo-gamelogo">
+          <img src={props.team.logoUrl} alt="" />
+        <div className="gameLogo">
+          <img src={props.game.logoUrl} alt="" />
+        </div>
+      </div>
       <div className='username'>{props.team.teamName}</div>
       <div className={ props.team.ownerId === props.userId  ? "team-owner": "member-role"}> { props.team.ownerId === props.userId  ? <>Owner</> : props.role}</div>
     </div>

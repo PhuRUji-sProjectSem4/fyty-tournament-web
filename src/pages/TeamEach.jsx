@@ -125,12 +125,16 @@ const TeamEach = () => {
   if(teamError || memberError || tourError || reqsError){
     return ( navigate(ClientRounteKey.error))
   }
+  console.log(team);
 
   return (
     // for Children Component
     <TeamContext.Provider value={team}> 
 
       <div className='teamEach'>
+          <div className="gameLogoTeam">
+            <img src={team.game.logoUrl} alt="game-logo" />
+          </div>
           <div className="teamCover">
             <img src={team.coverUrl} alt="team cover" />
             {user.id === team.ownerId ? <div className="changeTeamCover" onClick={() => setShowChangeCoverPopup(true)}><UploadPictureBtn/></div> : <></>}

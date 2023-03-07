@@ -61,7 +61,7 @@ const UserEach = () => {
     function memberShow(){
       setShowTour(prev => prev = false)
     }
-
+    
     const teamList = userTeam.map((team) =>
       <TeamRoleList key={team.id} {...team} />
     );

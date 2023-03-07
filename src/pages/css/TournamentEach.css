@@ -375,3 +375,14 @@ label.startTime {
     bottom: 20px;
     right: 20px;
 }
+
+.gameLogoTournamen{
+    position: absolute;
+    top: 30px;
+    right: 70px;
+}
+
+.gameLogoTournamen img{
+    height: 70px;
+    width: 100%;
+}

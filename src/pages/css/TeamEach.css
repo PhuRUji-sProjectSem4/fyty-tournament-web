@@ -2,6 +2,17 @@
     padding: 1em 3.5em;
 }
 
+.gameLogoTeam{
+    position: absolute;
+    right: 70px;
+    top: 390px
+}
+
+.gameLogoTeam img{
+    height: 70px;
+    width: 100%;
+}
+
 .teamEachHead{
     color: var(--line-color);
     font-weight: bold;
