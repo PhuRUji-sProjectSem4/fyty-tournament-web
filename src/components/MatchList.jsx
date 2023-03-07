@@ -67,11 +67,31 @@ const MatchList = (props) => {
               <div className="matchDetail">
                   <div className="teamAndScore">
                     <div className="homeTeamName" onClick={onTeamClick(props.homeTeamData.id)}>{props.homeTeamData.teamName}</div> 
-                    {scoreInput ? <div className="inputMatchWrape"><input className='matchScoreInput' type="text" placeholder='xx' {...register("teamHomeScore", {required: true ,pattern: /^(0|[1-2])$/})} /></div> : <div className="score"> {props.matchResult === null ? "" : props.matchResult.teamHomeScore} </div>} 
+                    {scoreInput ? 
+                        <div className="inputMatchWrape">
+                            <select {...register("teamHomeScore", {required: "select one option"})}>
+                                <option value="" selected disabled>score</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div> 
+                        : 
+                        <div className="score"> {props.matchResult === null ? "" : props.matchResult.teamHomeScore} </div>} 
                   </div>
                   <div className="vs">vs</div>
                   <div className="teamAndScore">
-                    {scoreInput ? <div className="inputMatchWrape"><input className='matchScoreInput' type="text" placeholder='xx' {...register("teamAwayScore", {required: true ,pattern: /^(0|[1-2])$/})} /></div> : <div className="score"> {props.matchResult === null ? "" : props.matchResult.teamAwayScore} </div>}
+                    {scoreInput ? 
+                        <div className="inputMatchWrape">
+                            <select {...register("teamAwayScore", {required: "select one option"})}>
+                                <option value="" selected disabled>score</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div> 
+                        : 
+                        <div className="score"> {props.matchResult === null ? "" : props.matchResult.teamAwayScore} </div>}
                     <div className="awayTeamName" onClick={onTeamClick(props.awayTeamData.id)}>{props.awayTeamData.teamName}</div>
                   </div>
               </div>

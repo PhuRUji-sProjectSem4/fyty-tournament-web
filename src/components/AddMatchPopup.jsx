@@ -44,10 +44,13 @@ const AddMatchPopup = (props) => {
     await mutateAsyncCreateMatch(data);
     props.setOpenPopup(prev => prev =false);
   }
+  console.log(props.teams);
 
-  const teamList = props.teams.map((team) =>
-    <option key={team.teamJoin.id} value={team.teamJoin.id}>{team.teamJoin.teamName}</option>
-  );
+  const teamList = props.teams
+    .filter((team) => team.loseCount < 2)
+    .map((team) =>
+      <option key={team.teamJoin.id} value={team.teamJoin.id}>{team.teamJoin.teamName}</option>
+    );
 
   if(isCreateMatchLoading) return(<LoadingPage/>)
 
