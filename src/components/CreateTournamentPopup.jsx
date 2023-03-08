@@ -19,6 +19,7 @@ const CreateTournamentPopup = (props) => {
     const games = useContext(GameContext);
     const navigate = useNavigate();
     const [coverUpload, setCoverUpload] = useState(null);
+    const [isFormLoading, setIsFormLoading] = useState(false);
 
     const{
         register,
@@ -43,10 +44,10 @@ const CreateTournamentPopup = (props) => {
         createTournament,
         {
             onError(){
-
+                setIsFormLoading(false)
             },
             onSuccess(){
-
+                setIsFormLoading(false)
             }
         }
     )
@@ -73,6 +74,7 @@ const CreateTournamentPopup = (props) => {
     };
 
     async function sentForm(data){
+        setIsFormLoading(true)
         const coverUrl = await uploadCoverImage();
         data.prize = Number(data.prize)
         data = {...data, coverUrl}
@@ -86,7 +88,7 @@ const CreateTournamentPopup = (props) => {
         <option key={game.id} value={game.id}>{game.gameName}</option>
     );
 
-    if(isCreateTournamentLoading) return (<div className="loadingPage"><LoadingPage/></div>)
+    if(isCreateTournamentLoading || isFormLoading) return (<div className="loadingPage"><LoadingPage/></div>)
 
   return (
         <div className="createTourOuter">

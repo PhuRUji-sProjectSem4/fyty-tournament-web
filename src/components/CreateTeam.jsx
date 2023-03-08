@@ -25,6 +25,8 @@ const CreateTeam = (props) => {
     const [coverUpload, setCoverUpload] = useState(null);
     const [logoUpload, setLogoUpload] = useState(null);
 
+    const [isCreateLoading, setIsCreateTeamLoading] = useState(false);
+
     const {
         register,
         handleSubmit,
@@ -46,6 +48,10 @@ const CreateTeam = (props) => {
         {
           onError() {
             setTeamError("Your's Team Name is Duplicate");
+            setIsCreateTeamLoading(false)
+          },
+          onSuccess(){
+            setIsCreateTeamLoading(false)
           }
         }
     );
@@ -92,6 +98,7 @@ const CreateTeam = (props) => {
 
     async function onCreateTeamClick(data){
         let payload = {};
+        setIsCreateTeamLoading(true)
         const logoUrl = await uploadLogoImage();
         const coverUrl = await uploadCoverImage();
         payload = {...data, coverUrl, logoUrl, gameId: gameSel};

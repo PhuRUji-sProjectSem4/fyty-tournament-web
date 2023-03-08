@@ -154,7 +154,7 @@ const TeamEach = () => {
 
             {/* for  who want to join team  */}
 
-            {user.id !== team.ownerId && !isFound && !reqIsFound ? <div className="joinTeam" onClick={showConfirmPopup} >joinTeam</div> : "" }
+            {user.id !== team.ownerId && !isFound && !reqIsFound ? <div className="joinTeam" onClick={showConfirmPopup} >Join Team</div> : "" }
             {confirmShow ? <ConfrimPopup message = {team.teamName} popStatus={setConformShow} reFReq={reReq} /> : ""}
             
             {/* requested already */}

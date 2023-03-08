@@ -191,7 +191,7 @@ const TournamentEach = () => {
     //Tour is started
     const tourStart = (TournamentDetail.status === "STARTED" && user.id !== TournamentDetail.ownerId);
     //Tour is ended
-    const tourEnd = (TournamentDetail.status === "ENDED" && user.id !== TournamentDetail.ownerId );
+    const tourEnd = (TournamentDetail.status === "ENDED");
     
     // for confirm detail and start register
     const showConfirmTour = (user.id === TournamentDetail.ownerId && TournamentDetail.status === "CHECKING"); 

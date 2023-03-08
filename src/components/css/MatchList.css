@@ -171,7 +171,12 @@
     background: var(--input-color);
     border: none;
     height: 30px;
-    color: #fff;
+    color: #fffffff8;
     font-weight: bold;
     font-family: inherit;
+    font-size: 20px;
+    margin: 0 10px;
+    border-radius: 4px;
+    
+    cursor: pointer;
 }
