@@ -212,6 +212,9 @@ const TournamentEach = () => {
     if(isTourError || isjoinError || isGetMatchError) return (<ErrorPage/>)
   return (
     <div className="tourEachPage">
+      <div className="gameLogoTournamen">
+        <img src={TournamentDetail.game.logoUrl} alt="gameLogoTournamen"/>
+      </div>
       <div className="tourEachHead">
         Tournament Detail
       </div>
