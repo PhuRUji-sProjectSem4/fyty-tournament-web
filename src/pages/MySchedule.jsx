@@ -17,8 +17,13 @@ const MySchedule = () => {
 
   const navigate = useNavigate();
 
-  const matchList = matchs.map((match) =>
-    <MatchCard key={match.id} {...match} />
+  console.log(matchs);
+  const matchList = matchs
+    .sort((matchA, matchB) => {
+      return new Date(matchA.date) - new Date(matchB.date);
+    })
+    .map((match) =>
+      <MatchCard key={match.id} {...match} />
   );
 
     if(matchError){
