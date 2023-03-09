@@ -65,6 +65,11 @@ const Register = (props) => {
     props.setRegTrigger(prev => prev=false) 
   };
 
+  async function onGoogleLoginClick(){
+    window.location.href = "https://fyty-tournament-backend-production.up.railway.app/auth/google";
+    props.setRegTrigger(false)
+  };
+
 
   return (props.regTrigger)?(
     <div className="regPop">
@@ -98,13 +103,13 @@ const Register = (props) => {
                   <div className="line"></div>
                 </div>
                 <div className="oauth">
-                  <div className="googleWrapper">
+                  <div className="googleWrapper" onClick={onGoogleLoginClick}>
                     <div className="icon">
                       <img src="/asset/google.png" alt="googleIcon" width="30" height="30" />
                     </div>
                     <span className='Text'>Sign up with Google</span>
                   </div>
-                    <div className="facebookWrapper">
+                    {/* <div className="facebookWrapper">
                       <div className="icon">
                         <img src="/asset/facebook.svg" alt="facebookIcon" width="30" height="30" />
                       </div>
@@ -115,7 +120,7 @@ const Register = (props) => {
                       <img src="/asset/discord.png" alt="discordIcon" width="30" height="30" />
                     </div>
                     <span className='Text'>Sign up with Discord</span>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="separate">
                   <div className="longLine"></div>

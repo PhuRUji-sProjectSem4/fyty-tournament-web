@@ -2,11 +2,14 @@
     height: 80px;
     position: fixed;
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
     background: var(--componet-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: flex;
     z-index: 600;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+
+    position: relative;
 }
 
 .logo{
@@ -24,23 +27,29 @@
 
 .navContent{
     width: 100%;
+    display: grid;
+    
+
+}
+
+.navbarLinkWrape{
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: auto 0;
-    justify-content: space-around;
-    column-gap: 2em;
-    padding: 0 2em;
+    justify-content: space-evenly;
+    width: 50vw;
+    margin: 0 auto;
 }
 
 .link a{
     color: #ffffff;
     text-decoration: none;
     font-size: 1.2em;
+    transition: all 0.2s;
 }
 
 .link a:hover{
-    color: #1ccece ;
+    color: var(--fyty-color) ;
+    font-size: 1.3em;
 }
 
 .singUp a{
@@ -90,8 +99,10 @@
 
 .login-box{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    width: 150px;
+    margin: 0 auto;
     gap: 3em;
 }
 
@@ -125,10 +136,12 @@
 
 .userInfo{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
     cursor: default;
+    min-width: 50%;
+    margin: 0 auto;
 }
 
 .userInfo img{

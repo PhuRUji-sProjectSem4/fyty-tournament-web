@@ -38,17 +38,12 @@ const Navbar = () => {
           <div className="appName">Tournament</div>
         </div>
       </div>
-      <div className="navContent">
-        <div className="link"><NavLink to="/home">Home</NavLink></div>
-        <div className="link"><NavLink to="/team">Teams</NavLink></div>
-        <div className="link"><NavLink to="/tournament">Tournaments</NavLink></div>
-        <div className="link"><NavLink to="/createTournament">Create</NavLink></div>
-        <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >Contarct</a></div>
-        <div className="navSearch">
-          <div  className='searchBar'>
-            <input type="text" placeholder='Search your friend, team and Tournament' onChange={handleSearchChange} />
-            <img src="/asset/search.svg" alt="searchIcon" height="25px" width="25px"/>
-          </div>
+        <div className="navbarLinkWrape">
+          <div className="link"><NavLink to="/home">Home</NavLink></div>
+          <div className="link"><NavLink to="/team">Teams</NavLink></div>
+          <div className="link"><NavLink to="/tournament">Tournaments</NavLink></div>
+          <div className="link"><NavLink to="/createTournament">Create</NavLink></div>
+          <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >Contarct</a></div>
         </div>
         {user ? (
           <div className="userInfo">
@@ -65,10 +60,7 @@ const Navbar = () => {
           <Register regTrigger={regPopup} setRegTrigger={setRegPopup} setLoginTrigger={setLoginPopup}/>
           </div>
         ) }
-        
-        
       </div>
-    </div>
   )
 }
 

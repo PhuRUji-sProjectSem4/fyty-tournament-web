@@ -91,7 +91,7 @@ const Login = (props) => {
                 </div>
                 <span className='Text'>Sign in with Google</span>
               </div>
-              <div className="facebookWrapper">
+              {/* <div className="facebookWrapper">
                 <div className="icon">
                   <img src="/asset/facebook.svg" alt="facebookIcon" width="30" height="30" />
                 </div>
@@ -102,7 +102,7 @@ const Login = (props) => {
                   <img src="/asset/discord.png" alt="discordIcon" width="30" height="30" />
                 </div>
                 <span className='Text'>Sign in with Discord</span>
-              </div>
+              </div> */}
             </div>
             </>
           }

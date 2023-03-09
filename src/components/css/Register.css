@@ -14,7 +14,7 @@
 .regPop-inner{
     position: relative;
     background: var(--componet-color);
-    min-height: 590px;
+    min-height: 400px;
     width: 400px;
     border-radius: 8px;
     z-index: 999;

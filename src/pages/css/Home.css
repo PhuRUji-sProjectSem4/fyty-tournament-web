@@ -9,12 +9,15 @@
 .ads{
     margin: 40px auto;
     height: 240px;
-    width: 1200px;
-    background: #000;
+    width: 84vw;
+    cursor: pointer;
+}
 
-    font-size: 5em;
-    text-align: center;
-}   
+.ads img{
+    object-fit: cover;
+    height: inherit;
+    width: inherit;
+}
 
 .vdoWrapper{
     display: grid;
@@ -43,6 +46,7 @@
     color: #fff;
     font-weight: bold;
     box-shadow: 0 0 8px 4px rgba(50, 255, 255, 0.4);
+    margin-top: 20px;
 }
 
 .lightBtn:hover{
@@ -51,3 +55,6 @@
     transition: 0.3s;
 }
 
+.detail{
+    margin: auto 0  ;
+}

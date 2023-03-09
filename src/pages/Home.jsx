@@ -6,12 +6,16 @@ import './css/Home.css'
 
 const Home = () => {
 
+  function onAdsClick(){
+    window.open("https://web.facebook.com/FyTyEsport?_rdc=1&_rdr")
+  }
+
   return (
     <div>
-      <div className="ads">
-        Just Let It Slide
-        <div className="slide">....</div>
+      <div className="ads" onClick={onAdsClick}>
+        <img src="/asset/slidebar.jpg" alt="slide" />
       </div>
+
       <div className="vdoWrapper">
         <div className="vdo">
           <iframe width="500" height="350" title='youtubu'
@@ -20,10 +24,11 @@ const Home = () => {
         </div>
         <div className="fytyDetail">
           <h1>Fy<span className='fytyColor'>Ty</span> Tournament</h1>
-          <p>fytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfyty</p>
-          <p>fytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfyty</p>
-          <p>fytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfyty</p>
-          <p>fytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfytyfyty</p>
+          <div className='detail'>
+            <p>Welcome to FyTy Tournament, the ultimate platform for esports players and organizers!
+              Whether you're a pro gamer or just starting out, our platform offers you the opportunity to
+              showcase your skills and compete with the best in the world.</p>
+          </div>
           <NavLink className='lightBtn' to="/tournament">Join Tournament</NavLink>
         </div>
       </div>
