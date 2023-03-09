@@ -77,8 +77,12 @@ const TeamEach = () => {
       <MemberList key={member.userData.id}  {...member}/>
     );
    
-    const tourList = tours.map((tour) => 
-      <TournamentList key={tour.id} {...tour}/>
+    const tourList = tours
+      .sort((tourA, tourB) => {
+        return new Date(tourB.tourStartTime) - new Date(tourA.tourStartTime);
+      })
+      .map((tour) => 
+        <TournamentList key={tour.id} {...tour}/>
     );
 
     function tourShow(){

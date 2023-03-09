@@ -24,7 +24,7 @@ const Home = () => {
         </div>
         <div className="fytyDetail">
           <h1>Fy<span className='fytyColor'>Ty</span> Tournament</h1>
-          <div className='detail'>
+          <div className='detail-home'>
             <p>Welcome to FyTy Tournament, the ultimate platform for esports players and organizers!
               Whether you're a pro gamer or just starting out, our platform offers you the opportunity to
               showcase your skills and compete with the best in the world.</p>

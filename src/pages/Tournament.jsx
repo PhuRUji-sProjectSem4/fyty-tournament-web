@@ -11,7 +11,7 @@ import LoadingPage from './LoadingPage';
 
 
 const Tournament = () => {
-  const [searchInput, setSearchInput] = useState()
+  const [searchInput, setSearchInput] = useState("")
   const [gameSel, setGameSel] = useState("all");
   const navigate = useNavigate()
   
@@ -20,13 +20,15 @@ const Tournament = () => {
     getTournament
   )
   
-  const tournamentList = tournaments.filter((tour) => gameSel==="all" ? true : tour.gameId === gameSel).map((tour) =>
+  const tournamentList = tournaments
+    .filter((tour) => gameSel==="all" ? true : tour.gameId === gameSel)
+    .filter((tour) => searchInput ==="" ? true : tour.tourName.includes(searchInput))
+    .map((tour) =>
     <TournamentCard key={tour.id} {...tour}/>
   );
 
   function handleSearchChange(event){
     setSearchInput(event.target.value);
-    console.log(searchInput);
   };
 
   if(error){

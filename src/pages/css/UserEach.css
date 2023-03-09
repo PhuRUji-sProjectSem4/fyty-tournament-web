@@ -10,7 +10,7 @@
 
 .cover{
     position: absolute;
-    top: 0px;
+    top: -20px;
     left: 0;
 
     width: 100%;
@@ -23,7 +23,7 @@
 
 .userContent{
     position: relative;
-    margin-top: 200px;
+    margin-top: 190px;
 }
 
 
@@ -69,7 +69,7 @@
 
 .changeCover{
     position: absolute;
-    top: 260px;
+    top: 250px;
     right: 60px;
     z-index: 308;
 }

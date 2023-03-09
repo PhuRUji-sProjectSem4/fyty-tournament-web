@@ -11,6 +11,7 @@ import LoadingPage from './LoadingPage'
 const Team = () => {
   const [createTeamPopup, setCreateTeamPopup] = useState(() => false);
   const [gameSel, setGameSel] = useState("all");
+  const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,17 +20,18 @@ const Team = () => {
     getTeams
   )
 
-  let searchInput = "";
-
   function handleSearchChange(event){
-    searchInput = event.target.value;
+    setSearch(event.target.value)
   };
 
   if(error) return (
     navigate(ClientRounteKey.error)
   )
 
-  const teamList = teams.filter((team) => gameSel==="all" ? true : team.gameId === gameSel).map((team) =>
+  const teamList = teams
+    .filter((team) => gameSel==="all" ? true : team.gameId === gameSel)
+    .filter((team) => search === "" ? true : team.teamName.includes(search))
+    .map((team) =>
     <TeamCard key={team.id} {...team}/>
   );
 
