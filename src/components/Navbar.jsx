@@ -20,11 +20,6 @@ const Navbar = () => {
 
   const [user, setUser] = useContext(UserContext);
 
-  function handleSearchChange(event){
-    searchInput = event.target.value;
-    console.log(searchInput);
-  }
-
   function togglePopup(){
     setNavPopup(() => !navPopup)
   }
@@ -40,9 +35,9 @@ const Navbar = () => {
       </div>
         <div className="navbarLinkWrape">
           <div className="link"><NavLink to="/home">Home</NavLink></div>
-          <div className="link"><NavLink to="/team">Teams</NavLink></div>
-          <div className="link"><NavLink to="/tournament">Tournaments</NavLink></div>
-          <div className="link"><NavLink to="/createTournament">Create</NavLink></div>
+          <div className="link"><NavLink to={user ? "/team" : "/unauth"}>Teams</NavLink></div>
+          <div className="link"><NavLink to={user ? "/tournament" : "/unauth"}>Tournaments</NavLink></div>
+          <div className="link"><NavLink to={user ? "/createTournament" : "unauth"}>Create</NavLink></div>
           <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >Contarct</a></div>
         </div>
         {user ? (

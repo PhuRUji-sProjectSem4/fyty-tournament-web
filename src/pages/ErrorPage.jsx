@@ -13,7 +13,7 @@ const ErrorPage = () => {
   return (
     <div className='error-page'>
         <h1>Sorry, Something Went Wrong.</h1>
-        <h1>Please Go Back To Home Page.</h1>
+        <h1>Please Go Back To Home Page and Don't Forget to <span className='fytyColor'>Login</span> First.</h1>
         <div className="homeBtn" onClick={onErrorPage} >Back to Home</div>
     </div>
   )

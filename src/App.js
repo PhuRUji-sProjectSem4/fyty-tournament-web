@@ -16,6 +16,7 @@ import ErrorPage from "./pages/ErrorPage";
 import coreApi from "./core/axios";
 import { ApiRounteKey } from "./path/coverPath";
 import Callback from "./pages/Callback";
+import LoginNotiBlock from "./pages/LoginNotiBlock";
 
 export const GameContext = React.createContext(); 
 export const UserContext = React.createContext();
@@ -95,6 +96,9 @@ const App = () => {
                         
                         {/* callback */}
                         <Route path="/callback/:vendor"  element={<Callback />} />
+
+                        {/* login block */}
+                        <Route path="/unauth" element={<LoginNotiBlock/>}/>
                         
 
                     </Routes>
