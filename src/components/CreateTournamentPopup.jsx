@@ -12,6 +12,7 @@ import { createTournament } from '../apis/tournament/tournament-querie'
 import LoadingPage from '../pages/LoadingPage'
 import { generatePath, useNavigate } from 'react-router-dom'
 import { ClientRounteKey } from '../path/coverPath'
+import { invalidDate } from '../toasts/tournament-toasts/toast'
 
 
 const CreateTournamentPopup = (props) => {
@@ -74,6 +75,19 @@ const CreateTournamentPopup = (props) => {
     };
 
     async function sentForm(data){
+        if(new Date(data.regStartTime) > new Date(data.regEndTime)){
+            invalidDate("Register End Time is End Before Register Start Time.")
+            return
+        }
+        if(new Date(data.tourStartTime) > new Date(data.tourEndTime)){
+            invalidDate("Tournament End Time is End Before Tournament Start Time.")
+            return
+        }
+        if(new Date(data.regEndTime) > new Date(data.tourStartTime)){
+            invalidDate("Tournament Start Time is Start Before Finish Register.")
+            return
+        }
+
         setIsFormLoading(true)
         const coverUrl = await uploadCoverImage();
         data.prize = Number(data.prize)

@@ -105,3 +105,10 @@ export const createScoreSucFail = (err) => {
         position : "top-right"
     })
 };
+
+export const invalidDate = (err) => {
+    toast.error(err, {
+        autoClose : 7000,
+        position : "top-right"
+    })
+};
