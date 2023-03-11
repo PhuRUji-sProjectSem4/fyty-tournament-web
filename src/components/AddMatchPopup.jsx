@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 import { createMatch } from '../apis/tournament/tournament-querie'
 import LoadingPage from '../pages/LoadingPage'
-import { createMatchFail, createMatchSuc } from '../toasts/tournament-toasts/toast'
+import { createMatchFail, createMatchSuc, invalidDate } from '../toasts/tournament-toasts/toast'
 
 import "./css/AddMatchPopup.css"
 
@@ -41,6 +41,10 @@ const AddMatchPopup = (props) => {
   )
 
   async function createMatchClient(data) {
+    if(new Date(data.date) < new Date(Date.now())){
+      invalidDate("Please Select a Present Date or Future Date.")
+      return
+    }
     await mutateAsyncCreateMatch(data);
     props.setOpenPopup(prev => prev =false);
   }

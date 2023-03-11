@@ -75,6 +75,10 @@ const CreateTournamentPopup = (props) => {
     };
 
     async function sentForm(data){
+        if(new Date(data.regStartTime) < new Date(Date.now())){
+            invalidDate("Please Select a Present Date or Future Date.")
+            return
+        }
         if(new Date(data.regStartTime) > new Date(data.regEndTime)){
             invalidDate("Register End Time is End Before Register Start Time.")
             return
@@ -87,7 +91,6 @@ const CreateTournamentPopup = (props) => {
             invalidDate("Tournament Start Time is Start Before Finish Register.")
             return
         }
-
         setIsFormLoading(true)
         const coverUrl = await uploadCoverImage();
         data.prize = Number(data.prize)
