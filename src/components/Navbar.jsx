@@ -38,7 +38,7 @@ const Navbar = () => {
           <div className="link"><NavLink to={user ? "/team" : "/unauth"}>Teams</NavLink></div>
           <div className="link"><NavLink to={user ? "/tournament" : "/unauth"}>Tournaments</NavLink></div>
           <div className="link"><NavLink to={user ? "/createTournament" : "unauth"}>Create</NavLink></div>
-          <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >Contarct</a></div>
+          <div className="link"><a href="https://www.facebook.com/FyTyEsport" target="_blank" >Contact</a></div>
         </div>
         {user ? (
           <div className="userInfo">
