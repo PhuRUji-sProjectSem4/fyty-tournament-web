@@ -307,6 +307,12 @@ const TournamentEach = () => {
         </div>
 
       </div>
+      
+      <div className="deleteTour">
+        <div className="deleteTourBtnReal">
+          Delete Tournament
+        </div>
+      </div>
 
       
 

@@ -79,7 +79,7 @@ export const joinTourSuc = () => {
 };
 
 export const joinTourFail = (err) => {
-    toast.error("Fail to Join Tournamnet. " + err.response.data.message, {
+    toast.error("Fail to Join Tournamnet. You'd already joined.", {
         autoClose : 5000,
         position : "top-right"
     })

@@ -386,3 +386,27 @@ label.startTime {
     height: 70px;
     width: 100%;
 }
+
+.deleteTour{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.deleteTourBtnReal{
+    color: var(--line-color);
+    border-radius: 10px;
+    border: 3px solid;
+    height: 30px;
+    width: 180px;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.deleteTourBtnReal:hover{
+    color: var(--noti-color);
+    cursor: pointer;
+}
