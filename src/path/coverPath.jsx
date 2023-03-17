@@ -54,6 +54,8 @@ export const ApiRounteKey = {
     acceptRequest: "/team/request/:id/accepted",
     declinedRequest: "/team/request/:id/declined",
 
+
+    //Tournament
     getTournament: "/tournament",
     getTournamentEach: "/tournament/:id",
     createTournament: "/tournament",

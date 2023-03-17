@@ -18,6 +18,7 @@ import { getUserTeam } from '../apis/user/user-queries';
 import UploadPicturePopup from '../components/UploadPicturePopup';
 import UploadPictureBtn from '../components/UploadPictureBtn';
 import { updatePicFail, updatePicSuc } from '../toasts/user-toasts/toast';
+import ConfirmDelete from '../components/ConfirmDelete';
 
 const TournamentEach = () => {
     const { id } = useParams();
@@ -28,6 +29,7 @@ const TournamentEach = () => {
     const [showInputRule, setShowInputRule] = useState(false);
     const [showJoinTourPopup, setShowJoinTourPopup] = useState(false);
     const [showChangCoverPopup, setShowChangeCoverPopup] = useState(false);
+    const [showDelTour, setShowDelTour] = useState(false);
 
     const [showConfirmReg, setShowConfirmReg] = useState(false);
     const [showConfirmStart, setShowConfirStart] = useState(false);    
@@ -308,11 +310,15 @@ const TournamentEach = () => {
 
       </div>
       
-      <div className="deleteTour">
-        <div className="deleteTourBtnReal">
-          Delete Tournament
+      { user.id === TournamentDetail.ownerId && TournamentDetail.status === "CHECKING" ?
+        <div className="deleteTour">
+          <div className="deleteTourBtnReal" on onClick={() => setShowDelTour(true)}>
+            Delete Tournament
+          </div>
         </div>
-      </div>
+      : <></>}
+
+      {showDelTour ? <ConfirmDelete tourId={id} setShowPopup={setShowDelTour}/> : <></>}
 
       
 

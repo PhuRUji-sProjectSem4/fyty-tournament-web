@@ -120,3 +120,12 @@ export function updateTournamentDetail(payload){
       .catch(reject)
   });
 }
+
+export function deleteTour(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .delete(generatePath(ApiRounteKey.deleteTournament, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

@@ -18,3 +18,46 @@
     width: 500px;
     border-radius: 8px;
 }
+
+.cancel{
+    color: var(--line-color);
+    border: solid 2px;
+    border-radius: 5px;
+
+    text-align: center;
+    width: 50%;
+
+    margin: 0 auto;
+}
+
+.cancel:hover{
+    cursor: pointer;
+    color: var(--noti-color);
+}
+
+.accept-tour{
+    border-radius: 5px;
+    background: var(--noti-color);
+
+    text-align: center;
+    width: 50%;
+
+    margin: 0 auto;
+}
+
+.accept-tour:hover{
+    background: #fff;
+    color: var(--noti-color);
+    cursor: pointer;
+}
+
+.condelTourQes{
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+.red{
+    color: var(--noti-color);
+}

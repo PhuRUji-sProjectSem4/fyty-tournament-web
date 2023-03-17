@@ -112,3 +112,17 @@ export const invalidDate = (err) => {
         position : "top-right"
     })
 };
+
+export const delTourSuc = () => {
+    toast.success("Tournament is Deleted", {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
+
+export const delTourFail = () => {
+    toast.error("Fail to Delete Tournament", {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
