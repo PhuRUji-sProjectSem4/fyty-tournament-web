@@ -97,7 +97,7 @@ const MatchList = (props) => {
               </div>
               
               <div className="playTime"> Date: {(props.date).slice(0,10)}  Time: {(props.date).slice(11,16)}</div>
-              {user.id === props.tournamentDetail.ownerId && props.matchResult === null && !!!scoreInput ? 
+              {user.id === props.tournamentDetail.ownerId && props.matchResult === null && !!!scoreInput && props.tournamentDetail.status !== "ENDED" ? 
                 <div className='editScoreBtn' onClick={() => setScoreInput(true)}><img src="/asset/edit.png" alt="edit" /></div> 
                 : <></>}
 

@@ -271,7 +271,7 @@ const TournamentEach = () => {
 
       <div className="tourDetailBox">
         <div className="selectBar">
-          <div className={ruleSel ? "ruleSel":"ruleNotSel"} onClick={onRuleClick}> Rule </div>
+          <div className={ruleSel ? "ruleSel":"ruleNotSel"} onClick={onRuleClick}> Details </div>
           <div className={matchSel ? "matchSel":"matchNotSel"} onClick={onBracketClick}> Bracket </div>
           <div className={joinSel ? "teamJoinSel" :"teamJoinNotSel"} onClick={onTeamJoinClick}> Team({TournamentDetail.currentJoin} / {TournamentDetail.tourCap}) </div>
         </div>
