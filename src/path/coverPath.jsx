@@ -72,6 +72,7 @@ export const ApiRounteKey = {
     getTournamentMatch: "/tournament/:id/match",
     cretaeTournamentMatch: "/tournament/match",
     createMatchScore: "/tournament/match/result",
+    deleteMatch: "/tournament/match/:id",
     
     localLogin: "/auth/login",
     oAuthLogin: "/auth/login/:vendor/callback",

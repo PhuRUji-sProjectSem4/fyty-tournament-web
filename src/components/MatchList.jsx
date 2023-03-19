@@ -9,11 +9,13 @@ import { ClientRounteKey } from '../path/coverPath';
 import { createScoreSuc, createScoreSucFail, wrongScore } from '../toasts/tournament-toasts/toast';
 
 import "./css/MatchList.css"
+import DeleteMatch from './DeleteMatch';
 
 const MatchList = (props) => {
     const navigate = useNavigate();
     const [user, setUset] = useContext(UserContext);
     const [scoreInput, setScoreInput] = useState(false);
+    const [showDelMatch, setShowDelMatch] = useState(false);
 
     const {isLoading: isCreateScoreLoading, mutateAsync: mutateAsyncCreateScore} = useMutation(
         createMatchScore,
@@ -97,9 +99,14 @@ const MatchList = (props) => {
               </div>
               
               <div className="playTime"> Date: {(props.date).slice(0,10)}  Time: {(props.date).slice(11,16)}</div>
+
               {user.id === props.tournamentDetail.ownerId && props.matchResult === null && !!!scoreInput && props.tournamentDetail.status !== "ENDED" ? 
-                <div className='editScoreBtn' onClick={() => setScoreInput(true)}><img src="/asset/edit.png" alt="edit" /></div> 
+                <div className="editMatch">
+                    <div className="trashMatch" onClick={() => setShowDelMatch(true)}><img src="/asset/trash.svg" alt=""  /></div>
+                    <div className='editScoreBtn' onClick={() => setScoreInput(true)}><img src="/asset/edit.png" alt="edit" /></div> 
+                </div>
                 : <></>}
+                {showDelMatch ? <DeleteMatch re={props.refetchMatch} setShowPopup={setShowDelMatch} matchId={props.id} /> : <></>}
 
                 {scoreInput ?<div className='accCan'>
                     <div className="canScoreMatch" onClick={() => setScoreInput(false)}>Cancel</div>

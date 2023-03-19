@@ -16,7 +16,7 @@ const MatchContrianer = (props) => {
         .filter((match) => match.round === round && match.bracket === bracket)
         .sort((a,b) => a.pair - b.pair)
         .map((match) =>
-          <MatchList {...match} tournamentDetail={props.tournamentDetail} refetchMatch={props.refetchTourMatch}/>
+          <MatchList key={match.id} {...match} tournamentDetail={props.tournamentDetail} refetchMatch={props.refetchTourMatch}/>
         )
   };
 

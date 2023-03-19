@@ -205,7 +205,6 @@ const TournamentEach = () => {
     const teamJoinList = joinsDetail.map((team) => 
       <TeamList key={team.id} {...team}/>
     );
-
     
 
     if(isTourLoading || isjoinLoading || isGetMatchLoading || isUpdateRuleLoading 
@@ -218,10 +217,10 @@ const TournamentEach = () => {
         <img src={TournamentDetail.game.logoUrl} alt="gameLogoTournamen"/>
       </div>
       <div className="tourEachHead">
-        Tournament Detail
+        Tournament Detail 
       </div>
       <div className="tourEachName">
-        <h1>{TournamentDetail.tourName}</h1>
+        <h1>{TournamentDetail.tourName} <span className='ownerName'>by <span className='fytyColor'>{TournamentDetail.ownerDetail.username}</span></span></h1>
       </div>
 
       <div className="picAndPrizeWrape">

@@ -61,3 +61,7 @@
 .red{
     color: var(--noti-color);
 }
+
+.ownerName{
+    font-size: 0.5em;
+}

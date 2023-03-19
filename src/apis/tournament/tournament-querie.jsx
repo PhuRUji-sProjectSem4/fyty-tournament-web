@@ -129,3 +129,12 @@ export function deleteTour(id){
       .catch(reject)
   });
 }
+
+export function deleteMatch(id){
+  return new Promise((resolve, reject) => {
+    coreApi
+      .delete(generatePath(ApiRounteKey.deleteMatch, {id}))
+      .then((response) => resolve(response.data))
+      .catch(reject)
+  });
+}

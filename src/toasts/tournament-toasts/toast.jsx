@@ -126,3 +126,17 @@ export const delTourFail = () => {
         position : "top-right"
     })
 };
+
+export const delMatchSuc = () => {
+    toast.success("Match is Deleted", {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
+
+export const delMatchFail = () => {
+    toast.error("Fail to Delete Match. This Match is Scored", {
+        autoClose : 5000,
+        position : "top-right"
+    })
+};
